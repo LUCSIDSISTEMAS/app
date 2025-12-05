@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LUCSID Gestão - Sistema Financeiro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="logo-area">
+            <i class="fas fa-chart-line"></i>
+            <div class="logo-text">
+                <h2>LUCSID Gestão</h2>
+                <p>Sistema Financeiro</p>
+            </div>
+        </div>
+        
+        <nav class="nav-menu">
+            <a class="nav-item active" data-page="dashboard">
+                <i class="fas fa-home"></i>
+                <span class="nav-label">Dashboard</span>
+            </a>
+            <a class="nav-item" data-page="fluxo-caixa">
+                <i class="fas fa-money-bill-wave"></i>
+                <span class="nav-label">Fluxo de Caixa</span>
+            </a>
+            <a class="nav-item" data-page="plano-contas">
+                <i class="fas fa-list-alt"></i>
+                <span class="nav-label">Plano de Contas</span>
+            </a>
+            <a class="nav-item" data-page="categorias">
+                <i class="fas fa-tags"></i>
+                <span class="nav-label">Categorias</span>
+            </a>
+            <a class="nav-item" data-page="relatorios">
+                <i class="fas fa-chart-bar"></i>
+                <span class="nav-label">Relatórios</span>
+            </a>
+        </nav>
+        
+        <div class="user-area">
+            <div class="user-avatar">JS</div>
+            <div class="user-info">
+                <h4>João Silva</h4>
+                <p>Administrador</p>
+            </div>
+        </div>
+    </aside>
+    
+    <!-- Botão mobile menu -->
+    <button class="mobile-menu-toggle" id="mobileMenuToggle">
+        <i class="fas fa-bars"></i>
+    </button>
+    
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Dashboard -->
+        <div id="dashboard" class="page-container active">
+            <div class="header">
+    <div class="page-title">
+        <h1>Dashboard Financeiro</h1>
+        <p>Resumo completo do seu negócio - Atualizado em tempo real</p>
+    </div>
+    
+		
+    <div class="header-actions">
+        <button class="btn btn-outline" id="configAPIBtn" title="Configurar API">
+            <i class="fas fa-cog"></i> API
+        </button>
+        <button class="btn btn-outline" id="syncBtn">
+            <i class="fas fa-sync-alt"></i> Sincronizar
+        </button>
+        <button class="btn btn-primary" id="novoLancamentoBtn">
+            <i class="fas fa-plus"></i> Novo Lançamento
+        </button>
+    </div>
+</div>		
+            <!-- Cards de Resumo -->
+            <div class="summary-cards">
+                <div class="summary-card receitas">
+                    <div class="card-content">
+                        <h3>Receitas do Mês</h3>
+                        <div class="value" id="receitasTotal">R$ 0,00</div>
+                    </div>
+                    <div class="card-icon">
+                        <i class="fas fa-arrow-up"></i>
+                    </div>
+                </div>
+                
+                <div class="summary-card despesas">
+                    <div class="card-content">
+                        <h3>Despesas do Mês</h3>
+                        <div class="value" id="despesasTotal">R$ 0,00</div>
+                    </div>
+                    <div class="card-icon">
+                        <i class="fas fa-arrow-down"></i>
+                    </div>
+                </div>
+                
+                <div class="summary-card saldo">
+                    <div class="card-content">
+                        <h3>Saldo Atual</h3>
+                        <div class="value" id="saldoAtual">R$ 0,00</div>
+                    </div>
+                    <div class="card-icon">
+                        <i class="fas fa-wallet"></i>
+                    </div>
+                </div>
+                
+                <div class="summary-card total">
+                    <div class="card-content">
+                        <h3>Transações</h3>
+                        <div class="value" id="totalTransacoes">0</div>
+                    </div>
+                    <div class="card-icon">
+                        <i class="fas fa-exchange-alt"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Seções do Dashboard -->
+            <div class="dashboard-sections">
+                <!-- Seção Gráfico -->
+                <div class="section-card">
+                    <div class="section-header">
+                        <h3 class="section-title">
+                            <i class="fas fa-chart-line"></i> Fluxo de Caixa - Últimos 30 dias
+                        </h3>
+                        <div class="filters">
+                            <div class="filter-group">
+                                <label>Período</label>
+                                <select class="select-filter" id="periodoFilter">
+                                    <option value="30">Últimos 30 dias</option>
+                                    <option value="90">Últimos 90 dias</option>
+                                    <option value="365">Último ano</option>
+                                </select>
+                            </div>
+                            <div class="filter-group">
+                                <label>Tipo</label>
+                                <select class="select-filter" id="tipoFilter">
+                                    <option value="todos">Todos</option>
+                                    <option value="receita">Receitas</option>
+                                    <option value="despesa">Despesas</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="fluxoCaixaChart"></canvas>
+                    </div>
+                </div>
+                
+                <!-- Seção Categorias Populares -->
+                <div class="section-card">
+                    <div class="section-header">
+                        <h3 class="section-title">
+                            <i class="fas fa-tags"></i> Categorias Mais Usadas
+                        </h3>
+                    </div>
+                    <div class="table-container">
+                        <table id="categoriasPopularesTable">
+                            <thead>
+                                <tr>
+                                    <th>Categoria</th>
+                                    <th>Lançamentos</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody id="categoriasPopularesBody">
+                                <!-- Dados serão preenchidos via JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Seção Lançamentos Recentes -->
+            <div class="section-card">
+                <div class="section-header">
+                    <h3 class="section-title">
+                        <i class="fas fa-history"></i> Lançamentos Recentes
+                    </h3>
+                    <button class="btn btn-outline btn-sm" id="verTodosBtn">
+                        <i class="fas fa-eye"></i> Ver Todos
+                    </button>
+                </div>
+                <div class="table-container">
+                    <table id="lancamentosTable">
+                        <thead>
+                            <tr>
+                                <th>Data</th>
+                                <th>Descrição</th>
+                                <th>Categoria</th>
+                                <th>Tipo</th>
+                                <th>Valor</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="lancamentosBody">
+                            <!-- Dados serão preenchidos via JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+                <div class="pagination">
+                    <button class="page-btn" id="prevPage"><i class="fas fa-chevron-left"></i></button>
+                    <span id="pageInfo">Página 1 de 1</span>
+                    <button class="page-btn" id="nextPage"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Fluxo de Caixa -->
+        <div id="fluxo-caixa" class="page-container">
+            <div class="header">
+                <div class="page-title">
+                    <h1>Fluxo de Caixa</h1>
+                    <p>Controle completo de receitas e despesas</p>
+                </div>
+                
+                <div class="header-actions">
+                    <button class="btn btn-outline" id="filtrarFluxoBtn">
+                        <i class="fas fa-filter"></i> Filtrar
+                    </button>
+                    <button class="btn btn-primary" id="novoLancamentoFluxoBtn">
+                        <i class="fas fa-plus"></i> Novo Lançamento
+                    </button>
+                </div>
+            </div>
+            
+            <div class="section-card">
+                <div class="section-header">
+                    <h3 class="section-title">
+                        <i class="fas fa-list"></i> Todos os Lançamentos
+                    </h3>
+                    <div class="filters">
+                        <div class="filter-group">
+                            <label>De</label>
+                            <input type="date" id="dataInicio" class="form-control" style="padding: 8px 12px; width: auto;">
+                        </div>
+                        <div class="filter-group">
+                            <label>Até</label>
+                            <input type="date" id="dataFim" class="form-control" style="padding: 8px 12px; width: auto;">
+                        </div>
+                        <div class="filter-group">
+                            <label>Categoria</label>
+                            <select class="select-filter" id="categoriaFilter">
+                                <option value="">Todas</option>
+                            </select>
+                        </div>
+                        <button class="btn btn-outline" id="aplicarFiltroBtn" style="align-self: flex-end; padding: 8px 15px;">
+                            Aplicar
+                        </button>
+                    </div>
+                </div>
+                <div class="table-container">
+                    <table id="todosLancamentosTable">
+                        <thead>
+                            <tr>
+                                <th>Data</th>
+                                <th>Descrição</th>
+                                <th>Categoria</th>
+                                <th>Tipo</th>
+                                <th>Valor</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="todosLancamentosBody">
+                            <!-- Dados serão preenchidos via JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+                <div class="pagination">
+                    <button class="page-btn" id="prevPageFluxo"><i class="fas fa-chevron-left"></i></button>
+                    <span id="pageInfoFluxo">Página 1 de 1</span>
+                    <button class="page-btn" id="nextPageFluxo"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Plano de Contas -->
+        <div id="plano-contas" class="page-container">
+            <div class="header">
+                <div class="page-title">
+                    <h1>Plano de Contas</h1>
+                    <p>Estrutura hierárquica das contas contábeis</p>
+                </div>
+                
+                <div class="header-actions">
+                    <button class="btn btn-outline" id="exportPlanoBtn">
+                        <i class="fas fa-file-export"></i> Exportar
+                    </button>
+                    <button class="btn btn-primary" id="novaContaBtn">
+                        <i class="fas fa-plus"></i> Nova Conta
+                    </button>
+                </div>
+            </div>
+            
+            <div class="plano-contas-tree" id="planoContasTree">
+                <!-- Estrutura hierárquica será preenchida via JavaScript -->
+            </div>
+        </div>
+        
+        <!-- Categorias -->
+        <div id="categorias" class="page-container">
+            <div class="header">
+                <div class="page-title">
+                    <h1>Categorias</h1>
+                    <p>Gerencie as categorias de lançamentos</p>
+                </div>
+                
+                <div class="header-actions">
+                    <button class="btn btn-primary" id="novaCategoriaBtn">
+                        <i class="fas fa-plus"></i> Nova Categoria
+                    </button>
+                </div>
+            </div>
+            
+            <div class="section-card">
+                <div class="section-header">
+                    <h3 class="section-title">
+                        <i class="fas fa-tags"></i> Todas as Categorias
+                    </h3>
+                    <div class="filters">
+                        <div class="filter-group">
+                            <label>Tipo</label>
+                            <select class="select-filter" id="tipoCategoriaFilter">
+                                <option value="">Todos</option>
+                                <option value="receita">Receitas</option>
+                                <option value="despesa">Despesas</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="table-container">
+                    <table id="categoriasTable">
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Tipo</th>
+                                <th>Cor</th>
+                                <th>Lançamentos</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="categoriasBody">
+                            <!-- Dados serão preenchidos via JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Relatórios -->
+        <div id="relatorios" class="page-container">
+            <div class="header">
+                <div class="page-title">
+                    <h1>Relatórios</h1>
+                    <p>Análises e relatórios financeiros</p>
+                </div>
+                
+                <div class="header-actions">
+                    <button class="btn btn-outline" id="gerarRelatorioBtn">
+                        <i class="fas fa-file-pdf"></i> Gerar PDF
+                    </button>
+                    <button class="btn btn-primary" id="atualizarRelatoriosBtn">
+                        <i class="fas fa-sync-alt"></i> Atualizar
+                    </button>
+                </div>
+            </div>
+            
+            <div class="dashboard-sections">
+                <div class="section-card">
+                    <div class="section-header">
+                        <h3 class="section-title">
+                            <i class="fas fa-chart-pie"></i> Distribuição por Categoria
+                        </h3>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="categoriasChart"></canvas>
+                    </div>
+                </div>
+                
+                <div class="section-card">
+                    <div class="section-header">
+                        <h3 class="section-title">
+                            <i class="fas fa-calendar-alt"></i> Evolução Mensal
+                        </h3>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="evolucaoMensalChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section-card">
+                <div class="section-header">
+                    <h3 class="section-title">
+                        <i class="fas fa-table"></i> Resumo Financeiro
+                    </h3>
+                </div>
+                <div class="table-container">
+                    <table id="resumoFinanceiroTable">
+                        <thead>
+                            <tr>
+                                <th>Mês</th>
+                                <th>Receitas</th>
+                                <th>Despesas</th>
+                                <th>Saldo</th>
+                                <th>% Margem</th>
+                            </tr>
+                        </thead>
+                        <tbody id="resumoFinanceiroBody">
+                            <!-- Dados serão preenchidos via JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Modal para Novo Lançamento -->
+    <div class="modal-overlay" id="lancamentoModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Novo Lançamento</h3>
+                <button class="close-modal" id="closeLancamentoModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="lancamentoForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="data">Data</label>
+                            <input type="date" id="data" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="tipo">Tipo</label>
+                            <select id="tipo" class="form-control" required>
+                                <option value="">Selecione</option>
+                                <option value="receita">Receita</option>
+                                <option value="despesa">Despesa</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="descricao">Descrição</label>
+                        <input type="text" id="descricao" class="form-control" placeholder="Ex: Venda de produto, Pagamento de fornecedor" required>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="categoria">Categoria</label>
+                            <select id="categoria" class="form-control" required>
+                                <option value="">Selecione uma categoria</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="valor">Valor (R$)</label>
+                            <input type="number" id="valor" class="form-control" step="0.01" min="0" placeholder="0,00" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="observacao">Observação (Opcional)</label>
+                        <textarea id="observacao" class="form-control" rows="3" placeholder="Detalhes adicionais sobre o lançamento"></textarea>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-outline" id="cancelLancamento">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Salvar Lançamento</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal para Nova Conta (Plano de Contas) -->
+    <div class="modal-overlay" id="contaModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 id="contaModalTitle">Nova Conta</h3>
+                <button class="close-modal" id="closeContaModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="contaForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="contaPai">Conta Pai (Opcional)</label>
+                            <select id="contaPai" class="form-control">
+                                <option value="">Nenhuma (Conta Principal)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="tipoConta">Tipo de Conta</label>
+                            <select id="tipoConta" class="form-control" required>
+                                <option value="">Selecione</option>
+                                <option value="ativo">Ativo</option>
+                                <option value="passivo">Passivo</option>
+                                <option value="receita">Receita</option>
+                                <option value="despesa">Despesa</option>
+                                <option value="patrimonio">Patrimônio Líquido</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="codigoConta">Código</label>
+                            <input type="text" id="codigoConta" class="form-control" placeholder="Ex: 1.01.001" required>
+                            <small style="color: var(--gray); font-size: 12px;">O código será gerado automaticamente se deixar em branco</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="nomeConta">Nome da Conta</label>
+                            <input type="text" id="nomeConta" class="form-control" placeholder="Ex: Caixa, Banco, Vendas" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="descricaoConta">Descrição (Opcional)</label>
+                        <textarea id="descricaoConta" class="form-control" rows="3" placeholder="Descrição detalhada da conta"></textarea>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-outline" id="cancelConta">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Salvar Conta</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal para Nova Categoria -->
+    <div class="modal-overlay" id="categoriaModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 id="categoriaModalTitle">Nova Categoria</h3>
+                <button class="close-modal" id="closeCategoriaModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="categoriaForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="nomeCategoria">Nome da Categoria</label>
+                            <input type="text" id="nomeCategoria" class="form-control" placeholder="Ex: Vendas, Salários, Aluguel" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="tipoCategoria">Tipo</label>
+                            <select id="tipoCategoria" class="form-control" required>
+                                <option value="">Selecione</option>
+                                <option value="receita">Receita</option>
+                                <option value="despesa">Despesa</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="corCategoria">Cor</label>
+                            <input type="color" id="corCategoria" class="form-control" value="#0066ff" style="height: 40px; padding: 5px;">
+                        </div>
+                        <div class="form-group">
+                            <label for="iconeCategoria">Ícone</label>
+                            <select id="iconeCategoria" class="form-control">
+                                <option value="fas fa-shopping-cart">🛒 Carrinho</option>
+                                <option value="fas fa-money-bill">💰 Dinheiro</option>
+                                <option value="fas fa-credit-card">💳 Cartão</option>
+                                <option value="fas fa-home">🏠 Casa</option>
+                                <option value="fas fa-car">🚗 Carro</option>
+                                <option value="fas fa-utensils">🍴 Alimentação</option>
+                                <option value="fas fa-briefcase">💼 Trabalho</option>
+                                <option value="fas fa-gift">🎁 Presente</option>
+                                <option value="fas fa-heart">❤️ Saúde</option>
+                                <option value="fas fa-graduation-cap">🎓 Educação</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="descricaoCategoria">Descrição (Opcional)</label>
+                        <textarea id="descricaoCategoria" class="form-control" rows="3" placeholder="Descrição da categoria"></textarea>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-outline" id="cancelCategoria">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Salvar Categoria</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="utils.js"></script>
+    <script src="sistema.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
