@@ -871,6 +871,192 @@ h1,h2,h3,h4,strong,b{color:#fff!important}
  #sobre .first-season-dots{left:12px!important;bottom:13px!important;height:34px!important}
 }
 </style>
+<style id="orion-v16-lighter-dark">
+/* V16 — dark mode mais claro, com mais branco e contraste.
+   Mantém preto + branco + azul oficial #0cb7f2. */
+:root{
+  --v16-blue:#0cb7f2;
+  --v16-white:#fff;
+  --v16-text:rgba(255,255,255,.96);
+  --v16-muted:rgba(255,255,255,.82);
+  --v16-muted-2:rgba(255,255,255,.68);
+  --v16-panel:rgba(255,255,255,.045);
+  --v16-panel-2:rgba(255,255,255,.07);
+  --v16-line:rgba(255,255,255,.14);
+  --v16-blue-line:rgba(12,183,242,.32);
+}
+
+/* Desktop: continua escuro, mas menos "chapado" no preto. */
+html,body{background:#020304!important;color:var(--v16-text)!important}
+.hero,#sobre,#projetos,#copa,#processo,#contato,.section{
+  color:var(--v16-text)!important;
+}
+.hero,#projetos,#processo{background:#020304!important}
+#sobre,#copa,#contato{background:#050708!important}
+
+p,.section-desc,.season-intro,.season-story p,.timeline-item p,
+.contact-option p,.hero-description,.hero-meta,.hero-bottom,
+.v13-season-head>p,.v13-awards-head>p,.v13-season-copy p,
+.v13-award-copy p,.gallery-hint{
+  color:var(--v16-muted)!important;
+}
+
+h1,h2,h3,h4,h5,h6,strong,b,.brand-label b{
+  color:#fff!important;
+}
+
+.identity-item,.timeline-item,.v13-award-tab,.v13-season-meta,
+.v13-awards-shell,.first-season-carousel,.v13-hero-viewport{
+  background-color:var(--v16-panel)!important;
+}
+
+.identity-item,.timeline-item,.v13-award-tab,.v13-season-meta,
+.v13-awards-shell,.v13-hero-viewport,.first-season-carousel{
+  border-color:var(--v16-line)!important;
+}
+
+.v13-award-tab.is-active{
+  background:rgba(255,255,255,.075)!important;
+  border-color:var(--v16-blue)!important;
+}
+
+.btn-outline,.small-control,.motion-toggle,
+.v13-hero-arrows button,.v13-award-toolbar button{
+  background:rgba(255,255,255,.045)!important;
+  border-color:rgba(255,255,255,.18)!important;
+  color:#fff!important;
+}
+
+.btn-outline:hover,.small-control:hover,.motion-toggle:hover,
+.v13-hero-arrows button:hover,.v13-award-toolbar button:hover{
+  background:#0cb7f2!important;
+  border-color:#0cb7f2!important;
+  color:#000!important;
+}
+
+.nav{
+  background:rgba(7,9,11,.93)!important;
+  border-color:rgba(255,255,255,.15)!important;
+  box-shadow:0 14px 46px rgba(0,0,0,.34),inset 0 1px 0 rgba(255,255,255,.055)!important;
+}
+
+.v13-hero-caption,.v13-award-copy{
+  background:#07090a!important;
+}
+
+.v13-season-photo,.v13-award-media{
+  background:#050607!important;
+}
+
+.v13-season-storyline,
+#sobre .season-header,#projetos .season-header,.awards-header,#processo .timeline-heading{
+  border-color:rgba(255,255,255,.14)!important;
+}
+
+/* Mobile: mais claro de forma perceptível, sem virar light mode. */
+@media(max-width:760px){
+  :root{
+    --v16-muted:rgba(255,255,255,.90);
+    --v16-muted-2:rgba(255,255,255,.78);
+    --v16-panel:rgba(255,255,255,.075);
+    --v16-panel-2:rgba(255,255,255,.105);
+    --v16-line:rgba(255,255,255,.20);
+  }
+
+  html,body{
+    background:#070809!important;
+    color:#fff!important;
+  }
+
+  .hero,#sobre,#projetos,#copa,#processo,#contato,.section{
+    background:#070809!important;
+  }
+
+  #sobre,#copa,#contato{
+    background:#0a0c0e!important;
+  }
+
+  p,.section-desc,.season-intro,
+  #sobre p,#projetos p,#copa p,#processo p,#contato p,
+  .story-copy,.story-copy p,.season-story p,
+  .timeline-item p,.contact-copy p,.contact-info p,
+  .hero-description,.hero-meta,.hero-bottom,
+  .v13-season-head>p,.v13-awards-head>p,.v13-season-copy p,
+  .v13-award-copy p,.gallery-hint,.moment-page{
+    color:rgba(255,255,255,.90)!important;
+  }
+
+  .caption-label,.v13-hero-caption small,
+  .v13-season-meta small,.photo-count{
+    color:rgba(255,255,255,.76)!important;
+  }
+
+  .identity-item,.timeline-item,.v13-award-tab,.v13-season-meta,
+  .v13-awards-shell,.first-season-carousel,.v13-hero-viewport,
+  #contato .contact-grid{
+    background:rgba(255,255,255,.075)!important;
+    border-color:rgba(255,255,255,.20)!important;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.045)!important;
+  }
+
+  .v13-award-tab.is-active{
+    background:rgba(255,255,255,.12)!important;
+    border-color:#0cb7f2!important;
+  }
+
+  .v13-hero-caption,.v13-award-copy{
+    background:#101315!important;
+  }
+
+  .v13-season-photo,.v13-award-media{
+    background:#0d1012!important;
+  }
+
+  .v13-hero-controls,
+  .v13-award-toolbar{
+    color:rgba(255,255,255,.78)!important;
+  }
+
+  .v13-hero-step i{
+    background:rgba(255,255,255,.28)!important;
+  }
+
+  .site-header .nav,
+  .site-header.scrolled .nav{
+    background:rgba(13,15,17,.96)!important;
+    border-color:rgba(255,255,255,.19)!important;
+    box-shadow:0 12px 34px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.06)!important;
+  }
+
+  .site-header .menu-toggle,
+  .site-header.scrolled .menu-toggle{
+    background:rgba(255,255,255,.09)!important;
+    border-color:rgba(255,255,255,.20)!important;
+  }
+
+  .nav-links{
+    background:rgba(15,17,19,.985)!important;
+    border-color:rgba(255,255,255,.18)!important;
+  }
+
+  .btn-outline,.small-control,.motion-toggle,
+  .v13-hero-arrows button,.v13-award-toolbar button{
+    background:rgba(255,255,255,.09)!important;
+    border-color:rgba(255,255,255,.22)!important;
+  }
+
+  .hero:before{
+    opacity:.78!important;
+  }
+
+  .hero-bottom,
+  .v13-season-storyline,
+  #sobre .season-header,#projetos .season-header,
+  .awards-header,#processo .timeline-heading{
+    border-color:rgba(255,255,255,.18)!important;
+  }
+}
+</style>
 </head>
 <body>
 <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
