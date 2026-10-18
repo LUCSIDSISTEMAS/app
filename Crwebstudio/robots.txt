@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /app/Crwebstudio/
+Sitemap: https://lucsidsistemas.github.io/app/Crwebstudio/sitemap.xml

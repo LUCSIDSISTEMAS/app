@@ -1,0 +1,19 @@
+crwebstudio — visual digital-wave-v5
+
+Origem: imagem original criada com a ferramenta integrada image_gen (não CLI), em 2026-10-17.
+Referência visual: IMG_0784.jpeg fornecida pelo usuário; usada como orientação de paleta, material e linguagem 3D. A imagem criada não contém texto, logo, pessoas ou interface.
+Arquivo original: digital-wave-v5.png — 1536 × 1024 pixels, RGB.
+Derivações: public/assets/digital-wave-1200.webp e digital-wave-720.webp, redimensionadas proporcionalmente com Lanczos e compressão WebP.
+Uso: textura artística do painel do hero e seção de demonstração. Não representa um site de cliente nem uma interface real.
+
+Prompt final:
+Use case: stylized-concept
+Asset type: premium digital-agency website hero texture, landscape 3:2.
+Primary request: create one polished cinematic 3D composition of a fluid, folded ribbon made from electric-blue optical glass, sweeping upward from the lower center to the upper right, with one luminous deep-blue glass sphere partially behind the ribbon.
+Scene/backdrop: uninterrupted nearly black midnight navy (#03091b), fading seamlessly at every outer edge. The left third remains mostly empty and very dark.
+Style/medium: high-end photorealistic CGI, elegant architectural glass sculpture, smooth flowing surfaces, sharp controlled refractions, premium studio lighting.
+Composition/framing: landscape, 3:2 aspect ratio. Main sculpture centered slightly right, filling the middle and right two thirds, with ample breathing room around it. The ribbon is broad with delicate parallel luminous lines following its curves; its base sweeps in a gentle arc along the lower half. The sphere sits near the upper middle-right behind the sculpture.
+Lighting/mood: rich cobalt and electric-blue illumination, fine icy-blue rim highlights, faint glow reflected into the navy backdrop, sophisticated and dimensional. Crisp details with clean, smooth dark gradients.
+Color palette: midnight navy, cobalt blue, electric azure, restrained icy cyan; very subtle indigo in deep refractions.
+Materials/textures: translucent glossy optical glass, fine light-trail striations following the curved ribbon, no grain or noisy particles.
+Constraints: abstract artwork only. No lettering, words, logos, watermarks, people, devices, frames, dashboard, website interface, buttons, charts, screen, or other objects. Do not bake in any text or UI. Full-bleed navy background, not transparent.
