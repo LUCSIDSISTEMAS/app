@@ -867,3 +867,202 @@ body.page-inactive *, body.page-inactive *::before, body.page-inactive *::after 
   .site-header { z-index: 60; }
   .has-whatsapp .site-footer { padding-bottom: calc(94px + env(safe-area-inset-bottom, 0px)); }
 }
+
+/* iPhones redesenhados no estilo do aparelho de referência: moldura metálica,
+   Dynamic Island, vidro com reflexo, proporção natural e movimento leve. */
+.device-gallery {
+  --example-width: clamp(276px, calc(100vw - 56px), 340px);
+  --example-height: calc(var(--example-width) * 1.96);
+  --phone-float: 5px;
+  gap: clamp(24px, 3.2vw, 46px);
+  padding-block: 24px 42px;
+  perspective: 1300px;
+}
+.device-gallery > .device-example {
+  position: relative;
+  isolation: isolate;
+  padding: 5px 4px 8px;
+  --base-tilt: -0.7deg;
+}
+.device-gallery > .device-example:nth-child(even) { --base-tilt: 0.9deg; }
+.device-gallery > .device-example:nth-child(3) { --base-tilt: -1.1deg; }
+.device-gallery .device-frame {
+  position: relative;
+  isolation: isolate;
+  flex: 1 0 auto;
+  width: 100%;
+  min-height: var(--example-height);
+  padding: 8px;
+  overflow: visible;
+  border: 1px solid #a1a5ac;
+  border-radius: 49px;
+  background: linear-gradient(106deg, #a4a4a9 0%, #353944 3%, #090b0f 11%, #07090e 42%, #171b27 81%, #888c96 97%, #c3c4cb 100%);
+  box-shadow: inset 1px 0 1px #f3f5ffb0, inset -2px 0 3px #ffffff4a, inset 0 -2px 3px #343943,
+    0 0 0 2px #090c14, 0 0 0 3px #526173, 0 20px 45px -19px #000d,
+    0 25px 55px -30px #257aff73;
+  transform: translateZ(0);
+  transform-origin: 50% 65%;
+  animation: phone-float-ref 8.8s ease-in-out infinite;
+  animation-delay: var(--device-delay, 0s);
+}
+.device-gallery .device-frame::before,
+.device-gallery .device-frame::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+  width: 4px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #25292f, #9b9fa5 55%, #1c2028);
+  box-shadow: 0 1px 1px #ffffff55;
+}
+.device-gallery .device-frame::before {
+  left: -5px;
+  top: 23%;
+  height: 36px;
+  box-shadow: 0 64px 0 -0.2px #626873, 0 119px 0 -0.2px #626873;
+}
+.device-gallery .device-frame::after { right: -5px; top: 28%; height: 74px; }
+.device-gallery .device-screen {
+  flex: 1;
+  height: auto;
+  min-height: calc(var(--example-height) - 18px);
+  padding: 78px 23px 23px;
+  border: 1px solid #25334b;
+  border-radius: 41px;
+  background: linear-gradient(126deg, #333c52 0%, #101a36 50%, #020a1d 100%);
+  box-shadow: 0 0 0 1px #040810, inset 0 0 28px #07112788;
+}
+.device-gallery .device-screen::after {
+  content: '';
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(116deg, #d8e6ff2b 0%, #cedaf313 42%, transparent 42.2%),
+    radial-gradient(ellipse at 0 0, #d5e4ff14, transparent 55%);
+  pointer-events: none;
+}
+.device-gallery .device-notch {
+  top: 20px;
+  left: 50%;
+  width: 34%;
+  height: 25px;
+  border: 1px solid #252a35;
+  border-radius: 999px;
+  background: linear-gradient(165deg, #11151f, #05070c 70%);
+  box-shadow: inset 0 2px 4px #000b, 0 1px 1px #ffffff26;
+  transform: translateX(-50%);
+}
+.device-gallery .device-notch::after {
+  content: '';
+  position: absolute;
+  right: 13px;
+  top: 8px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #354e79, #050911 68%);
+  box-shadow: 0 0 4px #277cff66;
+  animation: phone-camera-glint 6.4s ease-in-out infinite;
+}
+.device-gallery .device-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  color: #fff;
+  font-size: 20px;
+  letter-spacing: -.045em;
+}
+.device-gallery .device-brand img {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  border-radius: 7px;
+  background: #fff;
+}
+.device-gallery .screen-kicker { margin-top: 34px; color: #a9bee4; font-size: 17px; }
+.device-gallery .screen-title {
+  margin-top: 19px;
+  font-size: clamp(24px, calc(var(--example-width) * .092), 31px);
+  line-height: 1.16;
+  letter-spacing: -.047em;
+  text-wrap: initial;
+}
+.device-gallery .screen-kicker + .screen-title { margin-top: 16px; }
+.device-gallery .screen-wave {
+  bottom: 46px;
+  height: 56%;
+  opacity: .95;
+  animation: artwork-drift 11s ease-in-out infinite;
+  animation-delay: var(--device-delay, 0s);
+}
+.device-gallery .screen-button {
+  min-height: 56px;
+  padding: 15px 17px;
+  border-radius: 13px;
+  font-size: 18px;
+  background: linear-gradient(105deg, #066bff 0%, #3256f9 51%, #8229ee 100%);
+  box-shadow: 0 10px 24px #2a64ff55;
+  transition: filter .24s ease, box-shadow .24s ease, transform .24s ease;
+}
+.device-gallery .screen-button:hover { filter: brightness(1.14); box-shadow: 0 13px 32px #5c4aff77; }
+.device-gallery .device-example figcaption { font-size: 18px; margin-top: 22px; }
+.device-gallery .device-example::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  left: 13%; right: 13%; bottom: 58px;
+  height: 34px;
+  border-radius: 50%;
+  background: #1c70ff89;
+  filter: blur(22px);
+  opacity: .48;
+  pointer-events: none;
+  animation: phone-glow-ref 7s ease-in-out infinite;
+}
+.device-gallery .device-screen::before {
+  animation: screen-reflection 11.5s ease-in-out infinite;
+  animation-delay: var(--device-delay, 0s);
+}
+.device-gallery .screen-institutional { background: linear-gradient(125deg, #2b354d, #0a1530 55%, #030a1e); }
+.device-gallery .screen-institutional::after {
+  background: linear-gradient(116deg, #dce8ff26 0%, #d7e4ff16 42%, transparent 42.3%),
+    linear-gradient(180deg, transparent 0%, #040a1b25 55%, transparent 100%);
+}
+.device-gallery .screen-store { background: linear-gradient(120deg, #263b5b 0%, #0b1a3a 56%, #031025); }
+.device-gallery .screen-management { background: linear-gradient(125deg, #273b59 0%, #101934 55%, #040c22); }
+.device-gallery .screen-contact { background: linear-gradient(120deg, #283a56 0%, #091731 58%, #06102a); }
+.device-gallery .product-visual { height: clamp(120px, calc(var(--example-width) * .43), 150px); }
+.device-gallery .screen-store .screen-title { margin-top: 23px; }
+.device-gallery .screen-contact .screen-title { font-size: 33px; }
+@keyframes phone-float-ref {
+  0%, 100% { transform: translate3d(0, 0, 0) rotateZ(var(--base-tilt)) rotateY(-.6deg); }
+  50% { transform: translate3d(0, calc(-1 * var(--phone-float)), 0) rotateZ(calc(var(--base-tilt) * -.4)) rotateY(.9deg); }
+}
+@keyframes phone-glow-ref { 0%, 100% { opacity: .38; transform: scale(.93); } 50% { opacity: .68; transform: scale(1.04); } }
+@keyframes phone-camera-glint { 0%, 75%, 100% { box-shadow: 0 0 3px #277cff33; } 82% { box-shadow: 0 0 8px #479affad; } }
+.device-gallery:active .device-frame,
+.device-gallery.is-dragging .device-frame,
+.device-example:focus-within .device-frame { animation-play-state: paused; }
+@media (min-width: 600px) {
+  .device-gallery { --example-width: 340px; --phone-float: 8px; }
+}
+@media (min-width: 1024px) {
+  .device-gallery { --example-width: 340px; --phone-float: 12px; gap: 48px; }
+}
+@media (max-width: 359px) {
+  .device-gallery .device-screen { padding-inline: 17px; }
+  .device-gallery .device-brand { font-size: 18px; }
+  .device-gallery .screen-kicker { font-size: 16px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .device-gallery .device-frame, .device-gallery .device-example::before,
+  .device-gallery .device-notch::after, .device-gallery .screen-wave,
+  .device-gallery .device-screen::before { animation: none !important; }
+  .device-gallery .device-frame { transform: none !important; }
+}
+.reduce-motion .device-gallery .device-frame, .reduce-motion .device-gallery .device-example::before,
+.reduce-motion .device-gallery .device-notch::after, .reduce-motion .device-gallery .screen-wave,
+.reduce-motion .device-gallery .device-screen::before { animation: none !important; }
+.reduce-motion .device-gallery .device-frame { transform: none !important; }
