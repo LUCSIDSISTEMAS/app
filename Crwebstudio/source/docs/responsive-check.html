@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Conferência do layout responsivo — CR Web Studio</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: 24px; background: #edf2f7; color: #14243a; font: 16px/1.55 system-ui, sans-serif; }
+    h1 { margin: 0 0 8px; font-size: clamp(24px, 3vw, 34px); line-height: 1.2; }
+    h2 { margin: 0 0 12px; font-size: 21px; }
+    p { margin: 0 0 18px; max-width: 900px; }
+    fieldset { margin: 0; padding: 0; border: 0; min-width: 0; }
+    legend, label { font-weight: 650; }
+    legend { padding: 0; margin-bottom: 10px; }
+    button, select { min-height: 44px; padding: 10px 14px; border: 1px solid #6a7f99; border-radius: 7px; background: #fff; color: #14243a; font: inherit; }
+    button { cursor: pointer; }
+    button[aria-pressed="true"] { background: #124eb4; border-color: #124eb4; color: #fff; }
+    button:hover { border-color: #124eb4; }
+    :focus-visible { outline: 3px solid #185abb; outline-offset: 3px; }
+    .toolbar { display: grid; gap: 20px; padding: 20px; margin-block: 22px; background: #fff; border: 1px solid #c4cfdd; border-radius: 12px; }
+    .width-options, .navigation { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; }
+    .navigation label { margin-right: 3px; }
+    .frame-caption { margin-bottom: 10px; font-weight: 650; }
+    .viewport-shell { width: 100%; max-width: 100%; overflow: auto; padding-bottom: 16px; }
+    .frame-border { width: max-content; padding: 0; border: 2px solid #526b8a; background: #fff; }
+    #site-frame { display: block; border: 0; max-width: none; }
+    .diagnostics { margin-top: 24px; }
+    pre { margin: 0; padding: 18px; overflow: auto; border-radius: 10px; background: #102036; color: #e7f0ff; font: 14px/1.65 ui-monospace, SFMono-Regular, Consolas, monospace; white-space: pre; }
+    noscript p { padding: 14px; background: #fff4cd; color: #513d00; border-radius: 8px; }
+    @media (max-width: 600px) { body { padding: 16px; } .toolbar { padding: 16px; } }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Conferência do layout responsivo — CR Web Studio</h1>
+    <p>Página de manutenção para conferir o site publicado em larguras definidas em pixels CSS. O conteúdo usa o navegador atual: esta conferência não emula um aparelho ou o Safari.</p>
+  </header>
+
+  <main>
+    <section class="toolbar" aria-label="Controles da conferência">
+      <fieldset>
+        <legend>Largura do iframe</legend>
+        <div class="width-options">
+          <button type="button" data-width="320" aria-pressed="false">320 px</button>
+          <button type="button" data-width="360" aria-pressed="false">360 px</button>
+          <button type="button" data-width="375" aria-pressed="false">375 px</button>
+          <button type="button" data-width="390" aria-pressed="true">390 px</button>
+          <button type="button" data-width="430" aria-pressed="false">430 px</button>
+          <button type="button" data-width="768" aria-pressed="false">768 px</button>
+          <button type="button" data-width="1024" aria-pressed="false">1024 px</button>
+          <button type="button" data-width="1366" aria-pressed="false">1366 px</button>
+        </div>
+      </fieldset>
+      <div class="navigation">
+        <label for="section-select">Seção do site</label>
+        <select id="section-select">
+          <option value="inicio">Topo</option>
+          <option value="exemplos" selected>Exemplos</option>
+          <option value="solucoes">Soluções</option>
+          <option value="planos">Planos</option>
+          <option value="contato">Contato</option>
+        </select>
+        <button type="button" id="reload-frame">Recarregar site</button>
+      </div>
+    </section>
+
+    <p class="frame-caption" id="frame-caption">Iframe: 390 × 780 pixels CSS, em tamanho natural.</p>
+    <div class="viewport-shell">
+      <div class="frame-border">
+        <iframe id="site-frame" title="CR Web Studio — site publicado para conferência" src="../../index.html#exemplos" width="390" height="780"></iframe>
+      </div>
+    </div>
+
+    <section class="diagnostics" aria-labelledby="diagnostics-title">
+      <h2 id="diagnostics-title">Medidas do documento carregado</h2>
+      <p>O diagnóstico lê o layout do site. A coluna CSS mostra a largura calculada; o retângulo inclui a rotação decorativa, quando estiver ativa. Barras de rolagem podem reduzir a largura útil do documento.</p>
+      <pre id="diagnostic-output">Aguardando o carregamento do site…</pre>
+    </section>
+    <noscript><p>Ative JavaScript para usar os controles e ler as medidas. O site acima permanece disponível na largura inicial de 390 pixels.</p></noscript>
+  </main>
+
+  <script>
+    (() => {
+      'use strict';
+      const frame = document.getElementById('site-frame');
+      const caption = document.getElementById('frame-caption');
+      const output = document.getElementById('diagnostic-output');
+      const sectionSelect = document.getElementById('section-select');
+      const widthButtons = [...document.querySelectorAll('[data-width]')];
+      const widths = new Set([320, 360, 375, 390, 430, 768, 1024, 1366]);
+      const sections = new Set(['inicio', 'exemplos', 'solucoes', 'planos', 'contato']);
+      const siteUrl = new URL('../../index.html', window.location.href);
+      let scheduled = 0;
+      let observedWindow = null;
+      let documentObserver = null;
+      let refreshToken = '';
+
+      const rounded = value => Number.isFinite(value) ? value.toFixed(1) : 'indisponível';
+      const measureElement = (element, view) => {
+        const style = view.getComputedStyle(element);
+        return `CSS ${style.width}; retângulo ${rounded(element.getBoundingClientRect().width)} px; clientWidth ${element.clientWidth}; scrollWidth ${element.scrollWidth}`;
+      };
+
+      const readDiagnostics = () => {
+        scheduled = 0;
+        try {
+          const view = frame.contentWindow;
+          const doc = frame.contentDocument;
+          if (!view || !doc || !doc.documentElement || !doc.querySelector('.device-gallery')) {
+            output.textContent = 'Aguardando o documento do site e sua galeria…';
+            return;
+          }
+          const root = doc.documentElement;
+          const gallery = doc.querySelector('.device-gallery');
+          const galleryStyle = view.getComputedStyle(gallery);
+          const stylesheet = doc.querySelector('link[rel="stylesheet"]');
+          const lines = [
+            `Largura definida no iframe: ${frame.width} px CSS`,
+            `Altura definida no iframe: ${frame.height} px CSS`,
+            `Viewport do iframe (innerWidth): ${view.innerWidth} px CSS`,
+            `Documento: clientWidth ${root.clientWidth}; scrollWidth ${root.scrollWidth}`,
+            `Overflow horizontal do documento: ${root.scrollWidth > root.clientWidth + 1 ? 'sim' : 'não'}`,
+            `CSS carregado: ${stylesheet ? stylesheet.getAttribute('href') : 'não encontrado'}`,
+            '',
+            `Galeria: ${measureElement(gallery, view)}`,
+            `Overflow horizontal da galeria: ${gallery.scrollWidth > gallery.clientWidth + 1 ? 'sim' : 'não'}`,
+            `Galeria: display ${galleryStyle.display}; gap ${galleryStyle.gap}; overflow-x ${galleryStyle.overflowX}`,
+            `Galeria: grid-template-columns ${galleryStyle.gridTemplateColumns}`,
+            `Galeria: grid-auto-columns ${galleryStyle.gridAutoColumns}; grid-auto-flow ${galleryStyle.gridAutoFlow}`,
+            `Galeria: flex-direction ${galleryStyle.flexDirection}; flex-wrap ${galleryStyle.flexWrap}`,
+            ''
+          ];
+          [...gallery.querySelectorAll('.device-example')].forEach((example, index) => {
+            const label = example.querySelector('figcaption')?.textContent.trim() || `Exemplo ${index + 1}`;
+            const device = example.querySelector('.device-frame');
+            const screen = example.querySelector('.device-screen');
+            lines.push(`${index + 1}. ${label}`);
+            lines.push(`   Cartão: ${measureElement(example, view)}`);
+            if (device) lines.push(`   .device-frame: ${measureElement(device, view)}`);
+            if (screen) lines.push(`   .device-screen: ${measureElement(screen, view)}`);
+          });
+          output.textContent = lines.join('\n');
+        } catch {
+          output.textContent = 'Não foi possível ler o documento do iframe. A página de conferência e o site precisam estar na mesma origem.';
+        }
+      };
+
+      const scheduleRead = () => {
+        if (!scheduled) scheduled = requestAnimationFrame(readDiagnostics);
+      };
+
+      const navigateFrame = (reload = false) => {
+        const section = sectionSelect.value;
+        if (!sections.has(section) || siteUrl.origin !== window.location.origin) return;
+        if (reload) refreshToken = String(Date.now());
+        const destination = new URL(siteUrl.href);
+        if (refreshToken) destination.searchParams.set('responsive-check', refreshToken);
+        destination.hash = section;
+        frame.src = destination.href;
+        scheduleRead();
+      };
+
+      widthButtons.forEach(button => button.addEventListener('click', () => {
+        const width = Number(button.dataset.width);
+        if (!widths.has(width)) return;
+        frame.width = String(width);
+        widthButtons.forEach(option => option.setAttribute('aria-pressed', String(option === button)));
+        caption.textContent = `Iframe: ${width} × 780 pixels CSS, em tamanho natural.`;
+        scheduleRead();
+      }));
+      sectionSelect.addEventListener('change', () => navigateFrame());
+      document.getElementById('reload-frame').addEventListener('click', () => navigateFrame(true));
+
+      frame.addEventListener('load', () => {
+        documentObserver?.disconnect();
+        try {
+          observedWindow?.removeEventListener('resize', scheduleRead);
+          observedWindow?.removeEventListener('hashchange', scheduleRead);
+          observedWindow = frame.contentWindow;
+          const doc = frame.contentDocument;
+          observedWindow.addEventListener('resize', scheduleRead);
+          observedWindow.addEventListener('hashchange', scheduleRead);
+          if (doc?.fonts) doc.fonts.ready.then(scheduleRead).catch(() => {});
+          if ('ResizeObserver' in window && doc?.documentElement) {
+            documentObserver = new ResizeObserver(scheduleRead);
+            documentObserver.observe(doc.documentElement);
+          }
+        } catch {
+          observedWindow = null;
+        }
+        scheduleRead();
+      });
+      window.addEventListener('resize', scheduleRead, { passive: true });
+      if ('ResizeObserver' in window) new ResizeObserver(scheduleRead).observe(frame);
+      scheduleRead();
+    })();
+  </script>
+</body>
+</html>

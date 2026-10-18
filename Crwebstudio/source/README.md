@@ -40,6 +40,8 @@ As telas em perspectiva e os quatro celulares são ilustrações de soluções p
 
 A revisão de 18/10/2026 acrescenta escopo de entrega, etapas do projeto, dúvidas frequentes e condições comerciais mais claras. A galeria possui botões e informa os exemplos visíveis. As abas mantêm endereços diretos e histórico de navegação. O rodapé oferece uma preferência local para reduzir animações, respeitando também a configuração do sistema.
 
+A correção mobile da mesma revisão usa uma faixa horizontal de exemplos com largura explícita entre 260 e 320 px, sem encolhimento dos celulares. Molduras e conteúdo crescem juntos, os exemplos ficam estáveis durante a leitura, e o menu permanece acima do botão flutuante. A arte decorativa fica contida na página e o rodapé reserva espaço para o contato fixo.
+
 O recurso artístico `digital-wave` foi gerado com a ferramenta integrada de imagem, a partir da direção visual da referência. O prompt completo e a origem estão em `source-assets/digital-wave-v5.txt`. A tipografia, a marca e as interfaces são HTML e recursos oficiais, não textos gerados dentro de uma imagem. Os WebP de 720 e 1200 px são derivados comprimidos do original preservado.
 
 ## Contatos e planos
@@ -66,6 +68,8 @@ A publicação usa a pasta **Crwebstudio/** do repositório existente **LUCSIDSI
 ## Verificação
 
 Nesta revisão, o build e as checagens estáticas passaram: um H1, IDs únicos, âncoras válidas, arquivos locais presentes, campos de compilação resolvidos, política de indexação e destinos de WhatsApp conferidos, além de sintaxe JavaScript válida. A versão publicada deve ser conferida no navegador após o envio. Essas verificações não substituem medições de LCP/CLS nem testes em dispositivos reais; não há resultados medidos de Core Web Vitals nesta revisão.
+
+Para conferir as larguras do CSS no navegador, use [a página de manutenção responsiva](docs/responsive-check.html). Ela carrega o site publicado em um iframe de tamanho natural, permite escolher de 320 a 1366 px e mostra as dimensões reais dos celulares e qualquer overflow da página. A página usa `noindex,nofollow` e não faz parte da navegação comercial. Esse teste de largura não emula um aparelho ou o motor do Safari.
 
 Referências técnicas usadas: [W3C — padrão de abas acessíveis](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/) e [web.dev — otimização de LCP](https://web.dev/articles/optimize-lcp). O recurso visual principal recebe prioridade e o conteúdo abaixo da abertura usa imagens com lazy loading. Licença das fontes em `public/assets/font-license.txt`.
 
