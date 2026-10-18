@@ -197,3 +197,18 @@
 .reduce-motion .device-gallery .device-notch::after, .reduce-motion .device-gallery .screen-wave,
 .reduce-motion .device-gallery .device-screen::before { animation: none !important; }
 .reduce-motion .device-gallery .device-frame { transform: none !important; }
+
+/* Moldura metálica extraída da foto de referência do proprietário.
+   Apenas o aro é uma imagem: texto, arte interna e CTAs continuam reais. */
+.device-gallery .device-frame > .device-real-bezel {
+  position: absolute;
+  z-index: 7;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
