@@ -36,7 +36,9 @@ A configuração de hospedagem do Site original fica no ambiente de manutenção
 
 A marca usa o símbolo oficial em tamanho pequeno junto ao nome crwebstudio. A logo grande da versão anterior foi removida da abertura. A informação **mais de 200 clientes satisfeitos** foi fornecida explicitamente pelo responsável neste pedido. Não foram acrescentados prêmios, certificações, tempo de mercado, parcerias, avaliações ou resultados financeiros.
 
-As telas em perspectiva e os quatro celulares são ilustrações de soluções possíveis, não um portfólio de clientes ou um sistema de gestão conectado. A legenda da galeria informa isso. Seus botões são links reais para conversar com a crwebstudio: criar site, loja ou painel, sem simular uma coleção ou pedidos existentes. A seção de soluções explica site institucional, loja virtual, painel de pedidos/integrações e suporte de TI; as abas são interativas de verdade.
+As telas em perspectiva e os quatro celulares são ilustrações de soluções possíveis, não um portfólio de clientes ou um sistema de gestão conectado. A legenda da galeria informa isso. Seus botões são links reais para conversar com a crwebstudio: criar site, loja ou painel, sem simular uma coleção ou pedidos existentes. A seção de soluções explica site institucional, loja virtual, painel de pedidos/integrações e suporte do site; as abas são interativas de verdade.
+
+A revisão de 18/10/2026 acrescenta escopo de entrega, etapas do projeto, dúvidas frequentes e condições comerciais mais claras. A galeria possui botões e informa os exemplos visíveis. As abas mantêm endereços diretos e histórico de navegação. O rodapé oferece uma preferência local para reduzir animações, respeitando também a configuração do sistema.
 
 O recurso artístico `digital-wave` foi gerado com a ferramenta integrada de imagem, a partir da direção visual da referência. O prompt completo e a origem estão em `source-assets/digital-wave-v5.txt`. A tipografia, a marca e as interfaces são HTML e recursos oficiais, não textos gerados dentro de uma imagem. Os WebP de 720 e 1200 px são derivados comprimidos do original preservado.
 
@@ -59,10 +61,11 @@ Esta cópia está preparada para o GitHub Pages. O endereço de publicação é 
 
 A publicação usa a pasta **Crwebstudio/** do repositório existente **LUCSIDSISTEMAS/app**, na branch `main`. O conteúdo compilado fica diretamente nessa pasta; o código de manutenção fica em `source/`. Após cada build, copie `source/dist/` para `Crwebstudio/` e envie as alterações para a publicação de Pages já configurada no repositório. A pasta não instala um workflow próprio nem altera a configuração dos outros projetos. Nenhum `CNAME` é criado; esta configuração não registra o domínio `crwebstudio.com.br`.
 
-`allowIndexing: false` conserva `noindex,nofollow` no HTML. O build gera também `robots.txt` e `sitemap.xml` com os caminhos da hospedagem escolhida. Em sites de projeto do GitHub Pages, um `robots.txt` dentro da subpasta não controla os rastreadores do domínio inteiro; a meta `robots` da página permanece presente. A política de indexação pode ser alterada em `site.config.json` e exige um novo build.
+`allowIndexing: true` publica `index,follow` no HTML e permite a indexação da página. O build gera também `robots.txt` e `sitemap.xml` com os caminhos da hospedagem escolhida. Em sites de projeto do GitHub Pages, um `robots.txt` dentro da subpasta não controla os rastreadores do domínio inteiro. Permitir indexação não garante que os buscadores indexem a página nem uma posição nos resultados. A política pode ser alterada em `site.config.json` e exige um novo build.
 
 ## Verificação
 
-O navegador de teste compatível com o ambiente não está disponível. A publicação pode fornecer uma captura nativa da versão exata para inspeção do enquadramento desktop. Essa imagem não substitui teste de interações nem medição de LCP/CLS. Metas de LCP abaixo de 2,5 s e CLS abaixo de 0,1 não são apresentadas como resultados medidos.
+Nesta revisão, o build e as checagens estáticas passaram: um H1, IDs únicos, âncoras válidas, arquivos locais presentes, campos de compilação resolvidos, política de indexação e destinos de WhatsApp conferidos, além de sintaxe JavaScript válida. A versão publicada deve ser conferida no navegador após o envio. Essas verificações não substituem medições de LCP/CLS nem testes em dispositivos reais; não há resultados medidos de Core Web Vitals nesta revisão.
 
 Referências técnicas usadas: [W3C — padrão de abas acessíveis](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/) e [web.dev — otimização de LCP](https://web.dev/articles/optimize-lcp). O recurso visual principal recebe prioridade e o conteúdo abaixo da abertura usa imagens com lazy loading. Licença das fontes em `public/assets/font-license.txt`.
+

@@ -25,6 +25,7 @@ if (config.title.length >= 60 || config.description.length >= 155) throw new Err
 if (!Number.isFinite(config.monthlyRate) || config.monthlyRate <= 0 || config.monthlyRate > 1) throw new Error('A porcentagem mensal é inválida.');
 const phone = String(config.whatsapp || '');
 if (phone && !/^[1-9]\d{9,14}$/.test(phone)) throw new Error('O WhatsApp precisa conter somente país, DDD e número, entre 10 e 15 dígitos.');
+const phoneDisplay = phone ? `+${phone}`.replace(/^\+55(\d{2})(\d{4,5})(\d{4})$/, '+55 ($1) $2-$3') : '';
 const percent = new Intl.NumberFormat('pt-BR', { style: 'percent', maximumFractionDigits: 2 }).format(config.monthlyRate);
 const messages = {
   general: 'Olá, crwebstudio! Gostaria de conversar sobre um site para minha empresa.',
@@ -38,8 +39,21 @@ const messages = {
 const whatsapp = key => phone ? `https://wa.me/${phone}?text=${encodeURIComponent(messages[key])}` : '';
 const contact = key => whatsapp(key) || config.instagram;
 const schema = { '@context': 'https://schema.org', '@graph': [
-  { '@type': 'Organization', '@id': `${siteUrl}/#empresa`, name: config.name, url: `${siteUrl}/`, logo: `${siteUrl}/assets/crwebstudio-logo-960.webp`, sameAs: [config.instagram] },
-  { '@type': 'WebSite', '@id': `${siteUrl}/#site`, url: `${siteUrl}/`, name: config.name, inLanguage: 'pt-BR', publisher: { '@id': `${siteUrl}/#empresa` } }
+  {
+    '@type': 'Organization', '@id': `${siteUrl}/#empresa`, name: config.name,
+    description: config.description, url: `${siteUrl}/`,
+    logo: `${siteUrl}/assets/crwebstudio-logo-960.webp`, sameAs: [config.instagram],
+    ...(phone ? { telephone: `+${phone}` } : {}),
+    contactPoint: {
+      '@type': 'ContactPoint', contactType: 'Atendimento comercial e suporte',
+      availableLanguage: ['pt-BR'], url: contact('general'),
+      ...(phone ? { telephone: `+${phone}` } : {})
+    }
+  },
+  {
+    '@type': 'WebSite', '@id': `${siteUrl}/#site`, url: `${siteUrl}/`, name: config.name,
+    description: config.description, inLanguage: 'pt-BR', publisher: { '@id': `${siteUrl}/#empresa` }
+  }
 ] };
 const [cssSource, jsSource, htmlSource] = await Promise.all([read('src/styles.css'), read('src/app.js'), read('src/index.html')]);
 const [css, js] = await Promise.all([
@@ -58,6 +72,7 @@ const tokens = {
   SITE_URL: escape(contact('institucional')), STORE_URL: escape(contact('loja')),
   MANAGEMENT_URL: escape(contact('gestao')), SUPPORT_URL: escape(contact('suporte')),
   CONTACT_CHANNEL: phone ? 'WhatsApp' : 'Instagram',
+  PHONE_DISPLAY: escape(phoneDisplay),
   WHATSAPP_URL: escape(whatsapp('general') || '#contato'), WHATSAPP_HIDDEN: phone ? '' : 'hidden',
   CONTACT_FALLBACK_HIDDEN: phone ? 'hidden' : '', BODY_CLASS: phone ? 'has-whatsapp' : '', MONTHLY_PERCENT: escape(percent)
 };
@@ -79,3 +94,4 @@ await Promise.all([
   writeFile(new URL(scriptName, dist), js.code), writeFile(new URL('sitemap.xml', dist), sitemap), writeFile(new URL('robots.txt', dist), robots)
 ]);
 process.stdout.write(JSON.stringify({ titleCharacters: config.title.length, descriptionCharacters: config.description.length, cssBytes: Buffer.byteLength(css.code), jsBytes: Buffer.byteLength(js.code), whatsappConfigured: Boolean(phone), indexing: config.allowIndexing, siteUrl: `${siteUrl}/`, output: 'dist' }) + '\n');
+
