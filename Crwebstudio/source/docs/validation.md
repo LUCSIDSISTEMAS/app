@@ -30,7 +30,7 @@ A revisão usa âncoras HTTPS com `target="_top"`: em uma página aberta diretam
 - Galeria com gesto e teclado, sem rolagem automática. Arte com inclinação máxima de 2,5 graus e respeito a movimento reduzido.
 - Links externos HTTPS com navegação direta; WhatsApp e Instagram não dependem de JavaScript. Sem formulário, coleta de dados, API keys ou submissão simulada.
 - Correção dos cinco CTAs anteriormente decorativos: `Vamos criar`, `Criar site`, `Criar loja`, `Criar painel` e `Conversar` agora são links, sem ancestrais ocultos para acessibilidade.
-- WhatsApp oficial +55 (31) 99818-8608, informado pelo responsável, ativo em 17 links comerciais. Os três acessos identificados com a marca WhatsApp estão visíveis.
+- WhatsApp oficial +55 (31) 99818-8607, informado pelo responsável, ativo em 19 links do HTML publicado. Os acessos identificados com a marca WhatsApp estão visíveis.
 - Sete mensagens distintas: contato geral, site institucional, loja virtual, gestão, suporte, compra e assinatura. Todas usam o mesmo número confirmado e não enviam mensagens automaticamente.
 - Três links visíveis de Instagram continuam apontando para o perfil oficial, independentes da configuração do WhatsApp.
 - Flutuação e inclinação decorativa dos dispositivos, reflexos nas telas, realce dos ícones de pedidos e halo do WhatsApp sem alterar dimensões de layout.
@@ -82,3 +82,4 @@ O total de dist inclui recursos de compartilhamento e variantes; o navegador nã
 O navegador de teste compatível não está disponível neste ambiente. Não foram testadas interações reais em navegadores, nem medidos LCP, CLS ou Lighthouse. LCP abaixo de 2,5 s e CLS abaixo de 0,1 continuam como metas. Uma captura nativa da versão publicada permite verificar o enquadramento desktop, sem substituir esses testes.
 
 Referências: [W3C — Tabs Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/) e [web.dev — Optimize LCP](https://web.dev/articles/optimize-lcp).
+

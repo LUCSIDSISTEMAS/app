@@ -9,6 +9,7 @@
   const motionStorageKey = 'crwebstudio:reduce-motion';
   let userReducedMotion = false;
   let resetMotion = () => {};
+  let syncGalleryMotion = () => {};
   try { userReducedMotion = window.localStorage.getItem(motionStorageKey) === 'true'; } catch {}
   const motionIsReduced = () => reducedMotion.matches || userReducedMotion;
   const syncMotion = () => {
@@ -27,6 +28,7 @@
           : 'Você pode reduzir os movimentos da página.';
     }
     resetMotion();
+    syncGalleryMotion();
   };
   motionButton?.addEventListener('click', () => {
     if (reducedMotion.matches) return;
@@ -169,61 +171,73 @@
     }
   });
 
-  // Os controles seguem as posições reais dos cartões, em qualquer breakpoint.
+  // Toque nativo no celular; movimento suave e arraste com mouse no computador.
   const gallery = document.querySelector('.device-gallery');
   const galleryItems = [...gallery.querySelectorAll('.device-example')];
-  const galleryControls = document.querySelector('[data-gallery-controls]');
-  const galleryPrevious = document.querySelector('[data-gallery-prev]');
-  const galleryNext = document.querySelector('[data-gallery-next]');
-  const galleryStatus = document.querySelector('[data-gallery-status]');
-  let galleryFrame = 0;
   let galleryTarget = null;
+  let galleryMaximum = 0;
+  let galleryAnimation = 0;
+  let galleryLastTime = 0;
+  let galleryPhase = 0;
+  let galleryDirection = 1;
+  let galleryVisible = !('IntersectionObserver' in window);
+  let galleryHovered = false;
+  let galleryDrag = null;
+  let gallerySuppressClickUntil = 0;
+
   const galleryPositions = () => {
     const bounds = gallery.getBoundingClientRect();
     const left = bounds.left + gallery.clientLeft;
     const maximum = Math.max(0, gallery.scrollWidth - gallery.clientWidth);
-    const items = galleryItems.map(item => item.getBoundingClientRect());
     return {
-      left, maximum, items,
-      targets: items.map(item => Math.max(0, Math.min(maximum,
-        gallery.scrollLeft + item.left - left - (gallery.clientWidth - item.width) / 2)))
+      maximum,
+      targets: galleryItems.map(item => {
+        const bounds = item.getBoundingClientRect();
+        return Math.max(0, Math.min(maximum,
+          gallery.scrollLeft + bounds.left - left - (gallery.clientWidth - bounds.width) / 2));
+      })
     };
   };
-  const updateGallery = () => {
-    galleryFrame = 0;
-    const { left, maximum, items } = galleryPositions();
-    const canScroll = maximum > 2;
-    if (galleryControls) {
-      if (!canScroll && galleryControls.contains(document.activeElement)) gallery.focus({ preventScroll: true });
-      galleryControls.hidden = !canScroll;
-    }
-    if (galleryPrevious) {
-      galleryPrevious.hidden = !canScroll;
-      galleryPrevious.disabled = !canScroll || gallery.scrollLeft <= 2;
-    }
-    if (galleryNext) {
-      galleryNext.hidden = !canScroll;
-      galleryNext.disabled = !canScroll || gallery.scrollLeft >= maximum - 2;
-    }
-    if (galleryTarget !== null && Math.abs(gallery.scrollLeft - galleryTarget) <= 2) galleryTarget = null;
-    if (galleryStatus && items.length) {
-      const right = left + gallery.clientWidth;
-      let visible = items.flatMap((item, index) => item.left >= left - 2 && item.right <= right + 2 ? [index] : []);
-      if (!visible.length) {
-        const center = (left + right) / 2;
-        const nearest = items.reduce((best, item, index) =>
-          Math.abs((item.left + item.right) / 2 - center) < Math.abs((items[best].left + items[best].right) / 2 - center) ? index : best, 0);
-        visible = [nearest];
-      }
-      const first = visible[0] + 1;
-      const last = visible[visible.length - 1] + 1;
-      const label = first === last ? `${first} de ${items.length}` : `${first}–${last} de ${items.length}`;
-      if (galleryStatus.textContent !== label) galleryStatus.textContent = label;
+  const holdGallery = () => {
+    if (galleryAnimation) cancelAnimationFrame(galleryAnimation);
+    galleryAnimation = 0;
+    galleryLastTime = 0;
+  };
+  const alignGalleryMotion = () => {
+    if (galleryMaximum <= 2) return;
+    const ratio = Math.max(0, Math.min(1, gallery.scrollLeft / galleryMaximum));
+    const angle = Math.acos(1 - 2 * ratio);
+    galleryPhase = galleryDirection > 0 ? angle : 2 * Math.PI - angle;
+  };
+  const canAnimateGallery = () => desktop.matches && finePointer.matches
+    && !motionIsReduced() && !document.hidden && galleryVisible
+    && !galleryHovered && !galleryDrag && !gallery.contains(document.activeElement)
+    && galleryMaximum > 2;
+  const animateGallery = time => {
+    galleryAnimation = 0;
+    if (!canAnimateGallery()) { galleryLastTime = 0; return; }
+    const elapsed = galleryLastTime ? Math.min((time - galleryLastTime) / 1000, 0.05) : 0;
+    galleryLastTime = time;
+    // A curva desacelera nas pontas e volta sem duplicar conteúdo ou saltar de posição.
+    galleryPhase = (galleryPhase + elapsed * 64 / galleryMaximum) % (2 * Math.PI);
+    galleryDirection = galleryPhase <= Math.PI ? 1 : -1;
+    gallery.scrollLeft = galleryMaximum * (1 - Math.cos(galleryPhase)) / 2;
+    galleryAnimation = requestAnimationFrame(animateGallery);
+  };
+  syncGalleryMotion = () => {
+    if (!canAnimateGallery()) { holdGallery(); return; }
+    if (!galleryAnimation) {
+      alignGalleryMotion();
+      galleryAnimation = requestAnimationFrame(animateGallery);
     }
   };
-  const scheduleGallery = () => {
-    if (!galleryFrame) galleryFrame = requestAnimationFrame(updateGallery);
+  const resizeGallery = () => {
+    holdGallery();
+    galleryTarget = null;
+    galleryMaximum = Math.max(0, gallery.scrollWidth - gallery.clientWidth);
+    syncGalleryMotion();
   };
+
   const moveGallery = direction => {
     const { maximum, targets } = galleryPositions();
     if (maximum <= 2) return;
@@ -233,24 +247,96 @@
       : [...targets].reverse().find(position => position < current - 2) ?? 0;
     galleryTarget = target;
     gallery.scrollTo({ left: target, behavior: motionIsReduced() ? 'instant' : 'smooth' });
-    scheduleGallery();
   };
-  galleryPrevious?.addEventListener('click', () => moveGallery(-1));
-  galleryNext?.addEventListener('click', () => moveGallery(1));
   gallery.addEventListener('keydown', event => {
     if (event.target !== gallery || gallery.scrollWidth <= gallery.clientWidth + 1) return;
-    if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+    if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
     event.preventDefault();
-    moveGallery(event.key === 'ArrowRight' ? 1 : -1);
+    if (event.key === 'Home' || event.key === 'End') {
+      galleryTarget = event.key === 'Home' ? 0 : galleryMaximum;
+      gallery.scrollTo({ left: galleryTarget, behavior: motionIsReduced() ? 'instant' : 'smooth' });
+    } else moveGallery(event.key === 'ArrowRight' ? 1 : -1);
   });
-  gallery.addEventListener('scroll', scheduleGallery, { passive: true });
-  gallery.addEventListener('pointerdown', () => { galleryTarget = null; }, { passive: true });
+  gallery.addEventListener('scroll', () => {
+    if (galleryTarget !== null && Math.abs(gallery.scrollLeft - galleryTarget) <= 2) galleryTarget = null;
+  }, { passive: true });
+  gallery.addEventListener('pointerenter', event => {
+    if (event.pointerType !== 'mouse') return;
+    galleryHovered = true;
+    syncGalleryMotion();
+  });
+  gallery.addEventListener('pointerleave', event => {
+    if (event.pointerType !== 'mouse') return;
+    galleryHovered = false;
+    syncGalleryMotion();
+  });
+  gallery.addEventListener('focusin', syncGalleryMotion);
+  gallery.addEventListener('focusout', () => queueMicrotask(syncGalleryMotion));
   gallery.addEventListener('wheel', () => { galleryTarget = null; }, { passive: true });
-  window.addEventListener('resize', () => { galleryTarget = null; scheduleGallery(); }, { passive: true });
-  window.addEventListener('load', scheduleGallery, { once: true });
-  if (document.fonts) document.fonts.ready.then(scheduleGallery).catch(() => {});
-  if ('ResizeObserver' in window) new ResizeObserver(scheduleGallery).observe(gallery);
-  updateGallery();
+
+  gallery.addEventListener('pointerdown', event => {
+    galleryTarget = null;
+    gallerySuppressClickUntil = 0;
+    // O toque continua sob o controle do navegador, inclusive a rolagem vertical.
+    if (event.pointerType !== 'mouse' || event.button !== 0 || galleryMaximum <= 2
+      || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    galleryDrag = {
+      id: event.pointerId, x: event.clientX, y: event.clientY,
+      scroll: gallery.scrollLeft, active: false
+    };
+    holdGallery();
+  });
+  const finishGalleryDrag = event => {
+    if (!galleryDrag || (event && event.pointerId !== galleryDrag.id)) return;
+    const { id, active } = galleryDrag;
+    galleryDrag = null;
+    gallery.classList.remove('is-dragging');
+    if (active) gallerySuppressClickUntil = performance.now() + 250;
+    if (gallery.hasPointerCapture(id)) gallery.releasePointerCapture(id);
+    syncGalleryMotion();
+  };
+  window.addEventListener('pointermove', event => {
+    if (!galleryDrag || event.pointerId !== galleryDrag.id) return;
+    if (!(event.buttons & 1)) { finishGalleryDrag(event); return; }
+    const distance = event.clientX - galleryDrag.x;
+    if (!galleryDrag.active) {
+      const vertical = Math.abs(event.clientY - galleryDrag.y);
+      if (vertical > 8 && vertical > Math.abs(distance)) { finishGalleryDrag(event); return; }
+      if (Math.abs(distance) < 8) return;
+      galleryDrag.active = true;
+      gallery.classList.add('is-dragging');
+      gallery.setPointerCapture(event.pointerId);
+    }
+    event.preventDefault();
+    gallery.scrollLeft = Math.max(0, Math.min(galleryMaximum, galleryDrag.scroll - distance));
+  }, { passive: false });
+  window.addEventListener('pointerup', finishGalleryDrag);
+  window.addEventListener('pointercancel', finishGalleryDrag);
+  gallery.addEventListener('lostpointercapture', finishGalleryDrag);
+  gallery.addEventListener('dragstart', event => {
+    if (galleryDrag) event.preventDefault();
+  });
+  gallery.addEventListener('click', event => {
+    if (event.detail === 0 || performance.now() >= gallerySuppressClickUntil) return;
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    gallerySuppressClickUntil = 0;
+  }, true);
+
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(entries => {
+      galleryVisible = entries[0].isIntersecting;
+      syncGalleryMotion();
+    }, { threshold: 0.1 }).observe(gallery);
+  }
+  desktop.addEventListener('change', resizeGallery);
+  finePointer.addEventListener('change', syncGalleryMotion);
+  document.addEventListener('visibilitychange', syncGalleryMotion);
+  window.addEventListener('resize', resizeGallery, { passive: true });
+  window.addEventListener('load', resizeGallery, { once: true });
+  if (document.fonts) document.fonts.ready.then(resizeGallery).catch(() => {});
+  if ('ResizeObserver' in window) new ResizeObserver(resizeGallery).observe(gallery);
+  resizeGallery();
 
   let navigationFrame = 0;
   const updateNavigation = () => {

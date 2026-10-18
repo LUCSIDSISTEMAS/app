@@ -43,8 +43,8 @@ Nenhum `CNAME` é criado. A publicação nesta pasta não registra nem configura
 
 | Ação | Destino |
 | --- | --- |
-| CTAs de orçamento e serviços | `https://wa.me/5531998188608`, com mensagem apropriada ao serviço |
-| WhatsApp | +55 (31) 99818-8608 |
+| CTAs de orçamento e serviços | `https://wa.me/5531998188607`, com mensagem apropriada ao serviço |
+| WhatsApp | +55 (31) 99818-8607 |
 | Instagram | `https://www.instagram.com/cr.webstudio/` |
 | Marca e voltar ao topo | `#inicio` |
 
@@ -73,3 +73,4 @@ Se houver 404, confira o andamento da publicação existente e o caminho com mai
 - [GitHub — configuração da origem do GitHub Pages](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site)
 - [MDN — links e contexto de navegação](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/a)
 - [Google — localização e escopo de robots.txt](https://developers.google.com/crawling/docs/robots-txt/robots-txt-spec)
+

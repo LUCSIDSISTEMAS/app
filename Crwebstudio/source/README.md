@@ -20,7 +20,7 @@ Sem variáveis de ambiente, o endereço de publicação vem de `site.config.json
 | --- | --- |
 | `src/index.html` | Componentes semânticos e textos do site |
 | `src/styles.css` | Tokens, responsividade, componentes e animações |
-| `src/app.js` | Menu, abas acessíveis, galeria por teclado e perspectiva |
+| `src/app.js` | Menu, abas acessíveis, galeria com toque/arraste e movimento automático |
 | `site.config.json` | Contatos, percentual mensal, endereço e SEO |
 | `public/assets/` | Imagens e fontes otimizadas publicáveis |
 | `source-assets/` | Originais e registro da imagem gerada, fora da publicação |
@@ -38,15 +38,15 @@ A marca usa o símbolo oficial em tamanho pequeno junto ao nome crwebstudio. A l
 
 As telas em perspectiva e os quatro celulares são ilustrações de soluções possíveis, não um portfólio de clientes ou um sistema de gestão conectado. A legenda da galeria informa isso. Seus botões são links reais para conversar com a crwebstudio: criar site, loja ou painel, sem simular uma coleção ou pedidos existentes. A seção de soluções explica site institucional, loja virtual, painel de pedidos/integrações e suporte do site; as abas são interativas de verdade.
 
-A revisão de 18/10/2026 acrescenta escopo de entrega, etapas do projeto, dúvidas frequentes e condições comerciais mais claras. A galeria possui botões e informa os exemplos visíveis. As abas mantêm endereços diretos e histórico de navegação. O rodapé oferece uma preferência local para reduzir animações, respeitando também a configuração do sistema.
+A revisão de 18/10/2026 acrescenta escopo de entrega, etapas do projeto, dúvidas frequentes e condições comerciais mais claras. A galeria mantém os quatro exemplos em uma faixa contínua, sem setas ou contador. As abas mantêm endereços diretos e histórico de navegação. O rodapé oferece uma preferência local para reduzir animações, respeitando também a configuração do sistema.
 
-A correção mobile da mesma revisão usa uma faixa horizontal de exemplos com largura explícita entre 260 e 320 px, sem encolhimento dos celulares. Molduras e conteúdo crescem juntos, os exemplos ficam estáveis durante a leitura, e o menu permanece acima do botão flutuante. A arte decorativa fica contida na página e o rodapé reserva espaço para o contato fixo.
+A galeria revisada usa celulares entre 268 e 320 px no mobile e com 320 px no computador, sem encolher para caber em quatro colunas. A altura acompanha a largura e permite crescimento quando o conteúdo precisa de espaço. No celular, o visitante desliza a faixa com o dedo. No computador com mouse, ela se move suavemente de um lado ao outro e aceita clique e arraste; cliques simples nos links continuam nativos. O movimento pausa com mouse sobre a galeria, foco, arraste, página oculta ou preferência de movimento reduzido, e só roda enquanto a faixa está visível. O menu permanece acima do botão flutuante, a arte decorativa fica contida na página e o rodapé reserva espaço para o contato fixo.
 
 O recurso artístico `digital-wave` foi gerado com a ferramenta integrada de imagem, a partir da direção visual da referência. O prompt completo e a origem estão em `source-assets/digital-wave-v5.txt`. A tipografia, a marca e as interfaces são HTML e recursos oficiais, não textos gerados dentro de uma imagem. Os WebP de 720 e 1200 px são derivados comprimidos do original preservado.
 
 ## Contatos e planos
 
-Instagram oficial: [@cr.webstudio](https://www.instagram.com/cr.webstudio/). WhatsApp oficial informado pelo responsável: **+55 (31) 99818-8608**, configurado como `5531998188608`, com destino [wa.me/5531998188608](https://wa.me/5531998188608). Os três acessos específicos ficam no botão flutuante, na seção de contato e no ícone do exemplo de celular. Os CTAs comerciais levam ao WhatsApp com mensagens diferentes para cada serviço, compra, assinatura e contato geral. O visitante confirma qualquer envio no aplicativo de destino. Os links explicitamente identificados como Instagram levam ao perfil oficial.
+Instagram oficial: [@cr.webstudio](https://www.instagram.com/cr.webstudio/). WhatsApp oficial informado pelo responsável: **+55 (31) 99818-8607**, configurado como `5531998188607`, com destino [wa.me/5531998188607](https://wa.me/5531998188607). Os três acessos específicos ficam no botão flutuante, na seção de contato e no ícone do exemplo de celular. Os CTAs comerciais levam ao WhatsApp com mensagens diferentes para cada serviço, compra, assinatura e contato geral. O visitante confirma qualquer envio no aplicativo de destino. Os links explicitamente identificados como Instagram levam ao perfil oficial.
 
 Os contatos usam links HTML HTTPS com `target="_top"`, sem depender de JavaScript, pop-ups ou abertura de nova aba. Os retornos pela marca usam `#inicio`, mantendo o visitante dentro do site mesmo quando a hospedagem está em uma subpasta. Um visualizador incorporado ainda pode impor suas próprias restrições de navegação; a conferência final deve ser feita também pelo endereço publicado aberto diretamente no navegador.
 

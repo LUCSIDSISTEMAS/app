@@ -249,14 +249,47 @@ h1, h2, h3 { font-weight: 700; text-wrap: balance; }
 .showcase-heading h2 { font-size: clamp(29px, 7.4vw, 46px); line-height: 1.12; letter-spacing: -.04em; }
 .showcase-heading h2 span { color: #9fb6ff; }
 .showcase-heading > p { color: var(--muted); font-size: 16px; line-height: 1.5; margin: 15px auto 0; max-width: 600px; }
-.device-gallery { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(218px, 82%); gap: 21px; padding: 14px 3px 15px; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scrollbar-width: thin; scrollbar-color: #496ebd transparent; }
-.device-example { min-width: 0; width: 100%; scroll-snap-align: center; }
-.device-frame { position: relative; width: 100%; max-width: 244px; height: 424px; margin-inline: auto; padding: 7px; border: 1px solid #8190ac; border-radius: 32px; background: linear-gradient(135deg, #090d19, #111722 55%, #02040c); box-shadow: inset 0 0 0 2px #222a3d, 0 21px 38px -23px #000; transform-origin: center 60%; animation: device-float 7.6s ease-in-out infinite; animation-delay: var(--device-delay, 0s); }
+.device-gallery {
+  --example-width: clamp(268px, calc(100vw - 64px), 320px);
+  --example-height: max(460px, calc(var(--example-width) * 1.7));
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  width: calc(100% + 32px);
+  min-width: 0;
+  margin-inline: -16px;
+  gap: 24px;
+  padding: 16px 16px 22px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x proximity;
+  scroll-behavior: auto;
+  touch-action: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.device-gallery::-webkit-scrollbar { display: none; }
+.device-gallery > .device-example {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 var(--example-width);
+  width: var(--example-width);
+  min-width: var(--example-width);
+  max-width: var(--example-width);
+  scroll-snap-align: center;
+  scroll-snap-stop: normal;
+  animation: none;
+  transform: none;
+  translate: none;
+  rotate: none;
+}
+.device-frame { position: relative; display: flex; flex: 1 0 auto; width: 100%; min-width: 0; height: auto; min-height: var(--example-height); margin-inline: auto; padding: 8px; border: 1px solid #8190ac; border-radius: 36px; background: linear-gradient(135deg, #090d19, #111722 55%, #02040c); box-shadow: inset 0 0 0 2px #222a3d, 0 21px 38px -23px #000; }
 .device-example:nth-child(2) { --device-delay: -2.1s; }
 .device-example:nth-child(3) { --device-delay: -4.2s; }
 .device-example:nth-child(4) { --device-delay: -6.3s; }
 .device-notch { position: absolute; z-index: 3; top: 7px; left: 28%; width: 44%; height: 16px; border-radius: 0 0 13px 13px; background: #020512; }
-.device-screen { position: relative; isolation: isolate; display: flex; flex-direction: column; height: 100%; overflow: hidden; padding: 32px 15px 18px; background: #07132c; border-radius: 25px; }
+.device-screen { position: relative; isolation: isolate; display: flex; flex: 1; flex-direction: column; min-width: 0; height: auto; min-height: calc(var(--example-height) - 18px); overflow: hidden; padding: 34px 18px 18px; background: #07132c; border-radius: 28px; }
 .device-brand { position: relative; z-index: 2; color: #dce5fc; font-size: 16px; font-weight: 700; line-height: 1.3; letter-spacing: -.02em; }
 .screen-kicker { position: relative; z-index: 2; color: #aacbfd; font-size: 16px; line-height: 1.4; margin-top: 26px; }
 .screen-title { position: relative; z-index: 2; margin-top: 22px; color: #fff; font-size: 26px; font-weight: 700; line-height: 1.12; letter-spacing: -.04em; }
@@ -440,7 +473,6 @@ body.page-inactive *, body.page-inactive *::before, body.page-inactive *::after 
   .workspace-benefits { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
   .workspace-benefits > div { display: flex; flex-direction: column; align-items: flex-start; gap: 5px; }
   .workspace-benefits .icon { margin-bottom: 4px; }
-  .device-gallery { grid-auto-columns: minmax(230px, 43%); gap: 28px; }
   .contact-actions { width: auto; min-width: 300px; }
 }
 
@@ -487,9 +519,6 @@ body.page-inactive *, body.page-inactive *::before, body.page-inactive *::after 
   .showcase-heading { margin-bottom: 31px; }
   .showcase-heading h2 { font-size: 43px; }
   .showcase-heading > p { font-size: 18px; }
-  .device-gallery { grid-auto-columns: minmax(236px, 31%); gap: 26px; }
-  .device-frame { max-width: 246px; height: 446px; }
-  .device-screen { padding: 33px 16px 18px; }
   .screen-title { font-size: 27px; }
   .product-visual { height: 140px; margin-top: 22px; }
   .order-progress { margin-top: 30px; }
@@ -571,9 +600,6 @@ body.page-inactive *, body.page-inactive *::before, body.page-inactive *::after 
   .workspace-promo p { font-size: 26px; }
   .showcase-heading h2 { font-size: 49px; }
   .showcase-heading { margin-bottom: 29px; }
-  .device-gallery { grid-auto-flow: initial; grid-auto-columns: initial; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; padding: 15px 1px 19px; overflow: visible; scroll-snap-type: none; }
-  .device-frame { max-width: 246px; height: 434px; }
-  .device-screen { padding-inline: 13px; }
   .screen-title { font-size: 26px; }
   .screen-button { padding-inline: 9px; gap: 6px; }
   .screen-contact .screen-title { font-size: 32px; }
@@ -647,9 +673,6 @@ body.page-inactive *, body.page-inactive *::before, body.page-inactive *::after 
   .workspace-promo p { font-size: 32px; }
   .showcase-heading h2 { font-size: 58px; }
   .showcase-heading { margin-bottom: 35px; }
-  .device-gallery { gap: 48px; padding-inline: 22px; }
-  .device-frame { max-width: 251px; height: 466px; }
-  .device-screen { padding: 36px 17px 19px; }
   .screen-title { font-size: 29px; }
   .product-visual { height: 149px; margin-top: 24px; }
   .product-label { margin-top: 12px; }
@@ -686,19 +709,8 @@ body.page-inactive *, body.page-inactive *::before, body.page-inactive *::after 
 .mobile-menu[open] > summary .icon { color: var(--accent); }
 
 /* Demo screens grow with their content, including enlarged text. */
-:root { --device-min-height: 438px; }
-.device-frame { display: flex; height: auto; min-height: var(--device-min-height); }
-.device-screen { flex: 1; min-width: 0; height: auto; min-height: calc(var(--device-min-height) - 16px); }
 .screen-button { flex-shrink: 0; white-space: normal; overflow-wrap: anywhere; }
 .product-visual { flex-shrink: 0; }
-.device-example { display: flex; flex-direction: column; }
-.device-example figcaption { margin-top: 18px; }
-.gallery-controls { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 14px; margin-top: 16px; }
-.gallery-prev, .gallery-next { display: inline-flex; align-items: center; justify-content: center; gap: 7px; min-width: 48px; min-height: 48px; padding: 10px 15px; border: 1px solid #526e9d; border-radius: 10px; background: #0d1d3b; color: var(--text); font-size: 16px; line-height: 1.4; }
-.gallery-prev:disabled, .gallery-next:disabled { opacity: .48; cursor: default; }
-.gallery-prev:not(:disabled):hover, .gallery-next:not(:disabled):hover { background: #183563; }
-.gallery-status { min-width: 76px; text-align: center; color: var(--muted); font-size: 15px; }
-.gallery-prev .icon { transform: rotate(180deg); }
 .gallery-hint { margin: -10px 0 8px; color: var(--accent); text-align: center; font-size: 15px; line-height: 1.5; }
 .showcase-heading > p { max-width: 740px; }
 
@@ -787,7 +799,6 @@ body.page-inactive *, body.page-inactive *::before, body.page-inactive *::after 
   .footer-links { flex-direction: column; align-items: flex-start; }
 }
 @media (min-width: 768px) {
-  :root { --device-min-height: 454px; }
   .offer { padding: 31px 29px; }
   .offers { gap: 26px; }
   .contact-inner { padding: 38px 33px; }
@@ -813,7 +824,6 @@ body.page-inactive *, body.page-inactive *::before, body.page-inactive *::after 
   .footer-brand { grid-column: auto; }
 }
 @media (min-width: 1440px) {
-  :root { --device-min-height: 478px; }
   .hero h1 { font-size: 59px; }
   .delivery-list p, .process-grid p { font-size: 17px; }
   .offers { gap: 38px; }
@@ -823,79 +833,37 @@ body.page-inactive *, body.page-inactive *::before, body.page-inactive *::after 
   .hero-actions { align-items: stretch; gap: 8px; }
   .hero-actions .button { width: 100%; }
   .hero-actions .text-link { padding-inline: 8px; }
-  .gallery-controls { gap: 10px; }
-  .gallery-prev, .gallery-next { padding-inline: 12px; }
   .contact-inner { padding: 25px 18px; }
   .offer { padding: 24px 20px; }
   .footer-bottom { align-items: flex-start; }
 }
 
-/* Mobile examples keep an explicit width and never shrink into narrow columns. */
-@media (max-width: 1023px) {
-  .site-header { z-index: 60; }
-  .device-gallery {
-    --example-width: clamp(260px, calc(100vw - 80px), 320px);
-    display: flex;
-    flex-wrap: nowrap;
-    align-items: stretch;
-    width: 100%;
-    min-width: 0;
-    max-width: 100%;
-    gap: 24px;
-    padding: 16px max(4px, calc((100% - var(--example-width)) / 2)) 22px;
-    overflow-x: auto;
-    overflow-y: hidden;
-    overscroll-behavior-x: contain;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-  }
-  .device-gallery > .device-example {
-    flex: 0 0 var(--example-width);
-    width: var(--example-width);
-    min-width: var(--example-width);
-    max-width: var(--example-width);
-    scroll-snap-align: center;
-    scroll-snap-stop: normal;
-    transform: none;
-    translate: none;
-    rotate: none;
-  }
-  .device-gallery .device-frame {
-    flex: 1 0 auto;
-    width: 100%;
-    min-width: 0;
-    max-width: none;
-    height: auto;
-    min-height: 510px;
-    padding: 8px;
-    border-radius: 36px;
-    animation: none;
-    transform: none;
-    translate: none;
-    rotate: none;
-  }
-  .device-gallery .device-screen {
-    width: 100%;
-    min-width: 0;
-    min-height: 492px;
-    padding: 38px 20px 20px;
-    border-radius: 28px;
-  }
-  .device-gallery .screen-title { font-size: 29px; line-height: 1.16; }
-  .device-gallery .screen-contact .screen-title { font-size: 32px; }
-  .device-gallery .screen-button { min-height: 48px; padding: 12px 14px; }
-  .device-gallery .device-example figcaption { margin-top: 18px; padding-inline: 8px; font-size: 18px; }
-  .device-gallery .screen-wave, .device-gallery .shirt-icon,
-  .device-gallery .contact-orbit .icon, .device-gallery .order-row .icon,
-  .device-gallery .order-row i::after, .device-gallery .device-screen::before { animation: none; }
-  .gallery-controls { gap: 18px; margin-top: 12px; }
-  .gallery-status { min-width: 86px; font-size: 16px; }
-  .has-whatsapp .site-footer { padding-bottom: calc(94px + env(safe-area-inset-bottom, 0px)); }
+/* The same wide, proportional phones form one continuous strip at every size. */
+.device-gallery .screen-title { font-size: 29px; line-height: 1.16; }
+.device-gallery .screen-store .screen-title { margin-top: 18px; }
+.device-gallery .screen-contact .screen-title { font-size: 32px; }
+.device-gallery .product-visual { height: clamp(104px, calc(var(--example-width) * .38), 126px); margin-top: 16px; }
+.device-gallery .product-label { padding-bottom: 12px; }
+.device-gallery .screen-button { min-height: 48px; padding: 12px 14px; }
+.device-gallery .device-example figcaption { margin-top: 18px; padding-inline: 8px; font-size: 18px; }
+.device-gallery .screen-wave, .device-gallery .shirt-icon,
+.device-gallery .contact-orbit .icon, .device-gallery .order-row .icon,
+.device-gallery .order-row i::after, .device-gallery .device-screen::before { animation: none; }
+@media (min-width: 600px) {
+  .device-gallery { --example-width: 320px; gap: 28px; }
 }
-@media (min-width: 600px) and (max-width: 1023px) {
-  .device-gallery { --example-width: 300px; padding-inline: 5px; gap: 28px; }
+@media (min-width: 768px) {
+  .device-gallery { width: 100%; margin-inline: 0; padding-inline: 4px; }
+}
+@media (hover: hover) and (pointer: fine) {
+  .device-gallery { cursor: grab; -webkit-user-select: none; user-select: none; scroll-snap-type: none; }
+  .device-gallery img, .device-gallery a { -webkit-user-drag: none; }
+  .device-gallery.is-dragging, .device-gallery.is-dragging * { cursor: grabbing !important; }
 }
 @media (min-width: 1024px) {
-  .gallery-hint { display: none; }
+  .device-gallery { gap: 36px; }
 }
-
+@media (max-width: 1023px) {
+  .site-header { z-index: 60; }
+  .has-whatsapp .site-footer { padding-bottom: calc(94px + env(safe-area-inset-bottom, 0px)); }
+}
