@@ -1,375 +1,260 @@
-<!doctype html>
-<html lang="pt-BR">
+<!DOCTYPE html>
+
+<html class="no-js" lang="pt-BR">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#030507">
-<meta name="description" content="Equipe Órion — robótica estudantil, inovação, temporadas, conquistas e projetos da E. E. Presidente Tancredo Neves, em Caeté — MG.">
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1,viewport-fit=cover" name="viewport"/>
+
+<meta name="description" content="Equipe Órion — robótica estudantil, projetos, temporadas, conquistas e evolução de uma equipe que aprende construindo.">
+<meta name="theme-color" content="#0b0e11">
+<meta name="color-scheme" content="dark">
 <link rel="canonical" href="https://lucsidsistemas.github.io/app/equipe-orion/">
-<meta property="og:type" content="website">
-<meta property="og:locale" content="pt_BR">
 <meta property="og:title" content="Equipe Órion | Robótica Estudantil">
-<meta property="og:description" content="Ideias que saem do papel, projetos que ganham forma e uma equipe que evolui construindo.">
-<meta property="og:image" content="./assets/momento-equipe-03.webp">
-<title>Equipe Órion | Robótica Estudantil</title>
+<meta property="og:description" content="Projetos, conquistas e evolução da Equipe Órion.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://lucsidsistemas.github.io/app/equipe-orion/">
+<meta name="twitter:card" content="summary">
+
+<meta content="#07111f" name="theme-color"/>
+<title>Equipe Órion | Nossa Identidade · Robótica em Caeté</title>
+<meta content="Conheça a Equipe Órion, da E. E. Presidente Tancredo Neves, em Caeté — MG. Robótica, protótipos e os registros da Copa Órion 2026." name="description"/>
+<meta content="Equipe Órion" name="author"/>
+<meta content="website" property="og:type"/>
+<meta content="pt_BR" property="og:locale"/>
+<meta content="Equipe Órion" property="og:site_name"/>
+<meta content="Equipe Órion — Sobre nós e ideias em movimento" property="og:title"/>
+<meta content="Robótica, projetos e trabalho em equipe. Conheça a Órion e acompanhe a Copa Órion 2026." property="og:description"/>
+<meta content="Equipe Órion reunida e identidade visual da equipe." property="og:image:alt"/>
+<meta content="1200" property="og:image:width"/><meta content="630" property="og:image:height"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="Equipe Órion — Sobre nós e ideias em movimento" name="twitter:title"/>
+<meta content="Robótica, projetos e Copa Órion 2026, em Caeté — MG." name="twitter:description"/>
+<link href="data:image/png;base64,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" rel="icon" type="image/png"/>
+<link href="data:image/png;base64,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" rel="apple-touch-icon"/>
+
+<script>document.documentElement.classList.replace('no-js','js');</script>
+
+
+
+
+
+
+
+
+
+
+
+
+<style id="orion-critical">html,body{margin:0;background:#07090b;color:#fff}html.no-js .intro-loader{display:none}</style>
+<link rel="stylesheet" href="./orion.css?v=18">
 <link rel="preload" as="image" href="./assets/momento-equipe-03.webp" fetchpriority="high">
-<link rel="stylesheet" href="./orion.css?v=25">
-<script defer src="./orion.js?v=25"></script>
+<script defer src="./orion.js?v=18"></script>
+
+<script id="orion-structured-data" type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Equipe Órion","url":"https://lucsidsistemas.github.io/app/equipe-orion/","sameAs":["https://www.instagram.com/equipe_orion_?stkn=ejUydjB6NHg0eGwz","https://www.tiktok.com/@equipe_orion"]}</script>
 </head>
 <body>
 <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
-
-<div class="page-noise" aria-hidden="true"></div>
-<div class="cursor-glow" aria-hidden="true"></div>
-
-<header class="topbar" id="topbar">
-  <a class="brand" href="#inicio" aria-label="Equipe Órion — início">
-    <span class="brand-symbol" aria-hidden="true">
-      <img src="./assets/orion-mark.png" alt="">
-    </span>
-    <span class="brand-copy">
-      <strong>ÓRION</strong>
-      <small>ROBÓTICA ESTUDANTIL</small>
-    </span>
-  </a>
-
-  <button class="menu-button" id="menuButton" aria-expanded="false" aria-controls="mainNav" aria-label="Abrir menu">
-    <span></span><span></span>
-  </button>
-
-  <nav class="main-nav" id="mainNav" aria-label="Navegação principal">
-    <a href="#historia">História</a>
-    <a href="#temporadas">Temporadas</a>
-    <a href="#conquistas">Conquistas</a>
-    <a href="#parceiros">Parceiros</a>
-    <a href="#contato" class="nav-cta">Fale com a Órion</a>
-  </nav>
+<div aria-hidden="true" class="intro-loader" id="intro"><div class="loader-wrap"><img alt="" data-embedded-key="logo-orion" fetchpriority="high" height="436" id="asset-logo-orion" src="./assets/logo-orion.png" width="539" decoding="async"/><span>Equipe Órion</span></div></div>
+<header class="site-header">
+<nav aria-label="Navegação principal" class="nav">
+<a aria-label="Equipe Órion — início" class="brand" href="#inicio"><img id="asset-orion-mark" alt="" height="290" src="./assets/orion-mark.png" width="352" decoding="async"/><span class="brand-label"><b>ÓRION</b><small>ROBÓTICA ESTUDANTIL</small></span></a><div class="nav-links" id="navLinks"><a href="#sobre">A equipe</a><a href="#projetos">Projetos</a><a href="#copa">Copa 2026</a><a href="#processo">Nosso jeito</a><a href="#parceiros">Parceiros</a><a class="nav-cta" href="#contato">Fale com a equipe<svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 24 24"><path d="M7 17 17 7M7 7h10v10"></path></svg></a></div>
+<button aria-controls="navLinks" aria-expanded="false" aria-label="Abrir menu" class="menu-toggle" id="menuToggle" type="button"><svg aria-hidden="true" class="menu-icon" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"></path></svg><svg aria-hidden="true" class="close-icon" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"></path></svg></button>
+</nav>
+<div aria-hidden="true" class="reading-progress"><span></span></div></header>
+<header class="hero" id="inicio">
+<div class="wrap">
+<div class="hero-grid">
+<div class="hero-copy">
+<p class="eyebrow" data-enter="" style="--enter-delay:0.000s">EQUIPE ÓRION / ROBÓTICA ESTUDANTIL</p>
+<h1 aria-label="Muito além da robótica. Equipe Órion." data-enter="" style="--enter-delay:0.095s">Muito além<br/>da <em>robótica.</em></h1>
+<p class="hero-description" data-enter="" style="--enter-delay:0.285s">Ideias, descobertas e gente que constrói junto. Na Órion, a curiosidade sai do papel e encontra um mundo de possibilidades.</p>
+<div class="hero-actions" data-enter="" style="--enter-delay:0.380s"><a class="btn btn-light" href="#projetos">Conheça nossos projetos<svg aria-hidden="true" class="" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a><a aria-label="Abrir Instagram da Equipe Órion em nova aba" class="btn btn-outline" href="https://www.instagram.com/equipe_orion_?stkn=ejUydjB6NHg0eGwz" rel="noopener noreferrer" target="_blank"><svg aria-hidden="true" class="" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 24 24"><rect height="18" rx="5" width="18" x="3" y="3"></rect><circle cx="12" cy="12" r="4"></circle><path d="M17.4 6.6h.01"></path></svg><span class="btn-secondary-label">Instagram</span></a></div>
+<div class="hero-meta" data-enter="" style="--enter-delay:0.475s"><span aria-hidden="true" class="meta-stroke"></span><span>Da escola para novos desafios. Sempre em equipe.</span></div>
+</div>
+<section class="v13-hero-carousel" id="moments-v13" aria-label="Momentos da Equipe Órion" aria-roledescription="carrossel">
+  <div class="v13-hero-head"><span>REGISTROS DA EQUIPE</span><b><em aria-atomic="true" aria-live="polite" id="v13HeroCurrent">01</em> / 03</b></div>
+  <div class="v13-hero-viewport" id="v13HeroViewport">
+    <div class="v13-hero-track" id="v13HeroTrack"><article class="v13-hero-slide" data-v13-hero-slide aria-hidden="false">
+      <button class="v13-hero-media" type="button" aria-label="Ampliar foto: Juntos, em cada desafio" data-v13-zoom>
+        <img alt="Integrantes da Órion comemorando atrás da mesa com o projeto." class="" data-embedded-key="momento-03-960" decoding="async" draggable="false" fetchpriority="high" height="726" id="asset-momento-03-960" loading="eager" sizes="(max-width:760px) 85vw, 570px" src="./assets/momento-equipe-03.webp" width="960"/>
+      </button>
+      <div class="v13-hero-caption"><span>01</span><strong>Juntos, em cada desafio</strong><small>MOMENTOS DA ÓRION</small></div>
+    </article><article class="v13-hero-slide" data-v13-hero-slide aria-hidden="true">
+      <button class="v13-hero-media" type="button" aria-label="Ampliar foto: A equipe e seu projeto" data-v13-zoom>
+        <img alt="Equipe Órion reunida atrás da mesa de apresentação." class="" data-embedded-key="momento-02-627" decoding="async" draggable="false" height="468" id="asset-momento-02-627" loading="eager" sizes="(max-width:760px) 85vw, 570px" src="./assets/momento-equipe-02.webp" width="627"/>
+      </button>
+      <div class="v13-hero-caption"><span>02</span><strong>A equipe e seu projeto</strong><small>MOMENTOS DA ÓRION</small></div>
+    </article><article class="v13-hero-slide" data-v13-hero-slide aria-hidden="true">
+      <button class="v13-hero-media" type="button" aria-label="Ampliar foto: Nossa identidade" data-v13-zoom>
+        <img alt="Bandeira escura com o símbolo e o nome Órion." class="" data-embedded-key="momento-01-960" decoding="async" draggable="false" height="666" id="asset-momento-01-960" loading="eager" sizes="(max-width:760px) 85vw, 570px" src="./assets/bandeira-orion.webp" width="960"/>
+      </button>
+      <div class="v13-hero-caption"><span>03</span><strong>Nossa identidade</strong><small>MOMENTOS DA ÓRION</small></div>
+    </article></div>
+  </div>
+  <div class="v13-hero-controls">
+    <div class="v13-hero-steps" aria-label="Escolher foto"><button type="button" class="v13-hero-step is-active" data-v13-hero-go="0" aria-label="Ir para foto 1" aria-current="true"><i></i><span>01</span></button><button type="button" class="v13-hero-step " data-v13-hero-go="1" aria-label="Ir para foto 2" aria-current="false"><i></i><span>02</span></button><button type="button" class="v13-hero-step " data-v13-hero-go="2" aria-label="Ir para foto 3" aria-current="false"><i></i><span>03</span></button></div>
+    <div class="v13-hero-arrows"><button id="v13HeroPrev" type="button" aria-label="Foto anterior">←</button><button id="v13HeroNext" type="button" aria-label="Próxima foto">→</button></div>
+  </div>
+</section>
+</div>
+<div class="hero-bottom"><div><span class="caption-label">NOSSA BASE</span><span>E. E. Presidente Tancredo Neves <i aria-hidden="true">·</i> Caeté, Minas Gerais</span></div><a href="#sobre">Conheça a equipe <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><path d="M12 4v16m-6-6 6 6 6-6"></path></svg></a></div></div>
 </header>
+<main id="conteudo"><div class="identity-strip"><div class="wrap identity-row">
+<div class="identity-item" data-reveal="up"><span class="identity-number">01</span><div><strong>Imaginar sem limites.</strong><p>Toda criação começa com uma pergunta.</p></div></div>
+<div class="identity-item" data-reveal="up" style="--reveal-delay:90ms"><span class="identity-number">02</span><div><strong>Aprender na prática.</strong><p>Experimentar, ajustar e tentar de novo.</p></div></div>
+<div class="identity-item" data-reveal="up" style="--reveal-delay:180ms"><span class="identity-number">03</span><div><strong>Construir juntos.</strong><p>Compartilhar ideias faz parte do caminho.</p></div></div>
+</div></div>
+<section aria-labelledby="sobre-title" class="section about identity-section" id="sobre"><div class="seasons-wrap"><div class="season-header"><div><span class="season-kicker">01 / PRIMEIRA TEMPORADA</span><h2>Onde tudo<br/><span>começou.</span></h2></div><p class="season-intro">Os primeiros desafios, aprendizados e momentos que ajudaram a construir a identidade da Órion.</p></div><div class="season-grid"><article aria-label="Carrossel de fotos da primeira equipe" class="season-photo-card season-photo-large first-season-carousel"><div class="first-season-stage"><div class="first-season-slide is-active"><img alt="Primeira equipe da Órion reunida." src="./assets/primeira-equipe-01.webp" decoding="async"/><div class="first-season-caption"><span>PRIMEIRO REGISTRO</span><br/><strong>Ideias tomando forma.</strong></div></div><div class="first-season-slide"><img alt="Primeira equipe da Órion em um dos primeiros momentos." src="./assets/primeira-equipe-02.webp" decoding="async"/><div class="first-season-caption"><span>PRIMEIRA EQUIPE</span><br/><strong>Trabalhar junto para construir.</strong></div></div><div class="first-season-nav"><button aria-label="Foto anterior" id="firstPrev" type="button">‹</button><button aria-label="Próxima foto" id="firstNext" type="button">›</button></div><div class="first-season-dots"><button class="first-season-dot active" data-first-slide="0" type="button"></button><button class="first-season-dot" data-first-slide="1" type="button"></button></div></div></article><article class="season-story"><span class="story-label">NOSSA ORIGEM</span><h3>Uma equipe<br/>tomando forma.</h3><p>Foi nessa fase que começamos a descobrir o que significa trabalhar juntos: dividir tarefas, testar ideias, errar, aprender e voltar ainda mais preparados.</p><div class="season-facts"><div><b>01</b><span>Primeira equipe</span></div><div><b>02</b><span>Primeiros projetos</span></div><div><b>03</b><span>Primeiras conquistas</span></div></div></article></div></div></section>
+<section aria-labelledby="projetos-title" class="section projects v13-season" id="projetos">
+<div class="seasons-wrap">
+  <div class="v13-season-head">
+    <span class="v13-section-index">02 / SEGUNDA TEMPORADA</span>
+    <h2 id="projetos-title">Uma nova fase.<br/><span>O mesmo propósito.</span></h2>
+    <p>Uma nova formação, novas ideias e novos desafios. A segunda temporada continua a história da Órion com mais experiência e o mesmo propósito.</p>
+  </div>
+  <div class="v13-season-storyline">
+    <div class="v13-season-number" aria-hidden="true">02</div>
+    <div class="v13-season-copy"><span>A NOVA ÓRION</span><h3>Mais gente.<br/>Mais ideias.</h3><p>A nova equipe chega com energia, criatividade e vontade de construir. Cada integrante traz uma perspectiva diferente, e é dessa mistura que surgem os próximos projetos.</p></div>
+    <div class="v13-season-meta"><b>TEMPORADA</b><strong>2026</strong><small>Equipe · criatividade · construção</small></div>
+  </div>
+  <div class="v13-season-gallery">
+    <figure class="v13-season-photo v13-season-photo-main"><img alt="Equipe Órion reunida atrás da mesa de apresentação." decoding="async" loading="lazy" src="./assets/momento-equipe-02.webp"/><figcaption><span>01</span><div><small>SEGUNDA TEMPORADA</small><strong>A equipe e seu projeto</strong></div></figcaption></figure>
+    <figure class="v13-season-photo v13-season-photo-secondary"><img alt="Integrantes da Órion comemorando atrás da mesa com o projeto." decoding="async" loading="lazy" src="./assets/momento-equipe-03.webp"/><figcaption><span>02</span><div><small>NOVO MOMENTO</small><strong>Juntos em cada desafio</strong></div></figcaption></figure>
+  </div>
+</div>
+</section>
+<section aria-labelledby="copa-title" class="section copa v13-awards" id="copa">
+<div class="trophy-wrap">
+  <div class="v13-awards-head">
+    <span class="v13-section-index">03 / CONQUISTAS</span>
+    <h2 id="copa-title">Uma história<br/><span>que deixa marcas.</span></h2>
+    <p>Reconhecimentos que representam trabalho em equipe, evolução técnica e tudo o que construímos juntos ao longo da nossa trajetória.</p>
+  </div>
+  <div class="v13-awards-shell" aria-roledescription="carrossel" aria-label="Conquistas da Órion">
+    <div class="v13-award-toolbar"><span><em aria-atomic="true" aria-live="polite" id="v13AwardCurrent">01</em> / 05</span><div><button type="button" id="v13AwardPrev" aria-label="Conquista anterior">←</button><button type="button" id="v13AwardNext" aria-label="Próxima conquista">→</button></div></div>
+    <div class="v13-award-viewport" id="v13AwardViewport"><div class="v13-award-track" id="v13AwardTrack"><article class="v13-award-slide" data-v13-award-slide aria-hidden="false">
+      <button class="v13-award-media" type="button" data-v13-award-zoom aria-label="Ampliar: Conquistas da Órion"><img alt="Conjunto de troféus conquistados pela equipe Órion" src="./assets/trofeus-conjunto.jpg" decoding="async"/></button>
+      <div class="v13-award-copy"><span>NOSSA TRAJETÓRIA</span><b>01 / 05</b><h3>Conquistas da Órion</h3><p>Uma visão completa dos reconhecimentos conquistados pela Órion ao longo da trajetória.</p></div>
+    </article><article class="v13-award-slide" data-v13-award-slide aria-hidden="true">
+      <button class="v13-award-media" type="button" data-v13-award-zoom aria-label="Ampliar: Aliança Vencedora"><img alt="Troféu Aliança Vencedora" src="./assets/trofeu-alianca-vencedora.jpg" decoding="async"/></button>
+      <div class="v13-award-copy"><span>RECONHECIMENTO</span><b>02 / 05</b><h3>Aliança Vencedora</h3><p>Um registro de parceria, estratégia e trabalho coletivo reconhecido em competição.</p></div>
+    </article><article class="v13-award-slide" data-v13-award-slide aria-hidden="true">
+      <button class="v13-award-media" type="button" data-v13-award-zoom aria-label="Ampliar: Automação"><img alt="Troféu Automação" src="./assets/trofeu-automacao.jpg" decoding="async"/></button>
+      <div class="v13-award-copy"><span>RECONHECIMENTO</span><b>03 / 05</b><h3>Automação</h3><p>Reconhecimento ligado à aplicação prática de automação e desenvolvimento do projeto.</p></div>
+    </article><article class="v13-award-slide" data-v13-award-slide aria-hidden="true">
+      <button class="v13-award-media" type="button" data-v13-award-zoom aria-label="Ampliar: Aliança Finalista"><img alt="Troféu Prêmio Aliança Finalista, Robocopa dos Campeões 2025" src="./assets/trofeu-alianca-finalista-2025.jpg" decoding="async"/></button>
+      <div class="v13-award-copy"><span>ROBOCOPA 2025</span><b>04 / 05</b><h3>Aliança Finalista</h3><p>Registro da participação da equipe entre os finalistas da Robocopa dos Campeões 2025.</p></div>
+    </article><article class="v13-award-slide" data-v13-award-slide aria-hidden="true">
+      <button class="v13-award-media" type="button" data-v13-award-zoom aria-label="Ampliar: Prêmio Excelência"><img alt="Troféu Prêmio Excelência, Robocopa dos Campeões 2024" src="./assets/trofeu-premio-excelencia-2024.jpg" decoding="async"/></button>
+      <div class="v13-award-copy"><span>ROBOCOPA 2024</span><b>05 / 05</b><h3>Prêmio Excelência</h3><p>Prêmio de Excelência conquistado na Robocopa dos Campeões 2024.</p></div>
+    </article></div></div>
+    <div class="v13-award-progress"><i id="v13AwardProgress"></i></div>
+  </div>
+  <div class="v13-award-tabs" id="v13AwardTabs" aria-label="Escolher conquista"><button type="button" class="v13-award-tab is-active" data-v13-award-go="0" aria-current="true"><span>01</span><div><small>NOSSA TRAJETÓRIA</small><strong>Conquistas da Órion</strong></div></button><button type="button" class="v13-award-tab " data-v13-award-go="1" aria-current="false"><span>02</span><div><small>RECONHECIMENTO</small><strong>Aliança Vencedora</strong></div></button><button type="button" class="v13-award-tab " data-v13-award-go="2" aria-current="false"><span>03</span><div><small>RECONHECIMENTO</small><strong>Automação</strong></div></button><button type="button" class="v13-award-tab " data-v13-award-go="3" aria-current="false"><span>04</span><div><small>ROBOCOPA 2025</small><strong>Aliança Finalista</strong></div></button><button type="button" class="v13-award-tab " data-v13-award-go="4" aria-current="false"><span>05</span><div><small>ROBOCOPA 2024</small><strong>Prêmio Excelência</strong></div></button></div>
+</div>
+</section>
+<section aria-labelledby="processo-title" class="section process" id="processo">
+<div class="timeline-wrap">
+<div class="timeline-heading"><span class="season-kicker">04 / NOSSA EVOLUÇÃO</span><h2>De uma temporada<br/><span>para a outra.</span></h2><p>A Órion cresce, aprende e se transforma. Aqui você pode mostrar os principais momentos que conectam a primeira equipe à segunda.</p></div>
+<div class="timeline">
+<div class="timeline-item"><span class="timeline-year">01</span><div><b>Primeira temporada</b><small>O começo da nossa jornada.</small></div></div>
+<div class="timeline-line"></div>
+<div class="timeline-item active"><span class="timeline-year">02</span><div><b>Segunda temporada</b><small>Uma nova equipe, novos desafios.</small></div></div>
+<div class="timeline-line"></div>
+<div class="timeline-item future"><span class="timeline-year">03</span><div><b>Próximo capítulo</b><small>O que ainda vamos construir.</small></div></div>
+</div>
+</div>
+</section>
+<section aria-labelledby="parceiros-title" class="section partners" id="parceiros">
+<div class="partners-wrap">
+  <div class="partners-heading">
+    <span class="partners-index">05 / PARCEIROS</span>
+    <h2 id="parceiros-title">Quem acredita<br/><span>constrói junto.</span></h2>
+    <p>Patrocinadores e colaboradores fazem parte da jornada da Órion, ajudando ideias a saírem do papel e chegarem ainda mais longe.</p>
+  </div>
 
-<main id="conteudo">
-<section class="hero" id="inicio">
-  <div class="hero-grid">
-    <div class="hero-copy">
-      <p class="kicker" data-reveal>CAETÉ · MINAS GERAIS · BRASIL</p>
-      <h1 data-reveal>
-        <span>Construindo</span>
-        <span>o que ainda</span>
-        <em>não existe.</em>
-      </h1>
-      <p class="hero-text" data-reveal>
-        Ideias que saem do papel, projetos que ganham forma e uma equipe que aprende,
-        testa, erra, melhora e volta ainda mais preparada.
-      </p>
-      <div class="hero-actions" data-reveal>
-        <a class="button button-primary" href="#temporadas">
-          Conheça nossa trajetória
-        </a>
-        <a class="text-link" href="https://www.instagram.com/equipe_orion_?stkn=ejUydjB6NHg0eGwz" target="_blank" rel="noopener noreferrer">
-          Instagram
-        </a>
+  <div class="partners-grid">
+    <article class="partners-panel partners-panel-sponsors">
+      <div class="partners-panel-head">
+        <span>PATROCINADORES</span>
+        <h3>Marcas que impulsionam a Órion.</h3>
+        <p>Apoios que ajudam a viabilizar materiais, tecnologia, participação em eventos e novas experiências para a equipe.</p>
       </div>
-
-      <div class="hero-data" data-reveal>
-        <div><strong>02</strong><span>temporadas</span></div>
-        <div><strong>05</strong><span>conquistas</span></div>
-        <div><strong>01</strong><span>propósito</span></div>
-      </div>
-    </div>
-
-    <div class="hero-visual" data-reveal>
-      <div class="hero-frame"><span class="hero-photo-label" aria-hidden="true">EQUIPE / 2026</span>
-        <img src="./assets/momento-equipe-03.webp" alt="Equipe Órion reunida e comemorando atrás de sua mesa de apresentação." fetchpriority="high" decoding="async">
-        <div class="hero-frame-vignette" aria-hidden="true"></div>
-        <div class="hero-caption">
-          <span>REGISTRO / 2026</span>
-          <strong>Juntos em cada desafio.</strong>
+      <div class="partners-empty" aria-label="Área de patrocinadores">
+        <div class="partners-empty-mark" aria-hidden="true">
+          <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24">
+            <path d="M12 3 15 9l6 .9-4.5 4.4 1.1 6.2L12 17.5 6.4 20.5l1.1-6.2L3 9.9 9 9l3-6Z"></path>
+          </svg>
         </div>
+        <span>PARCEIROS DA TEMPORADA</span>
+        <strong>Patrocinadores da Equipe Órion</strong>
+        <p>Os parceiros oficiais serão apresentados aqui.</p>
       </div>
-      <div class="orbit orbit-a" aria-hidden="true"></div>
-      <div class="orbit orbit-b" aria-hidden="true"></div>
-      <div class="hero-mark" aria-hidden="true">ORION</div>
-    </div>
-  </div>
-
-  <div class="hero-footer">
-    <p>E. E. Presidente Tancredo Neves</p>
-    <a href="#historia">Role para explorar</a>
-  </div>
-</section>
-
-<section class="manifesto" id="historia">
-  <div class="manifesto-intro">
-    <p class="section-index" data-reveal>01 / NOSSO JEITO</p>
-    <h2 data-reveal>Robótica é só o começo.</h2>
-    <p data-reveal>
-      A Órion é feita de curiosidade, colaboração e vontade de transformar uma ideia
-      em algo real. O resultado aparece no projeto, mas começa muito antes: na pergunta certa.
-    </p>
-  </div>
-
-  <div class="manifesto-lines">
-    <article data-reveal>
-      <span>01</span>
-      <h3>Pensar</h3>
-      <p>Observar o problema antes de correr para a solução.</p>
     </article>
-    <article data-reveal>
-      <span>02</span>
-      <h3>Testar</h3>
-      <p>Construir, falhar rápido, aprender e ajustar o caminho.</p>
-    </article>
-    <article data-reveal>
-      <span>03</span>
-      <h3>Evoluir</h3>
-      <p>Somar experiências e voltar melhor para o próximo desafio.</p>
+
+    <article class="partners-panel partners-panel-collabs">
+      <div class="partners-panel-head">
+        <span>COLABORADORES</span>
+        <h3>Gente que soma conhecimento e apoio.</h3>
+        <p>Pessoas, instituições e iniciativas que colaboram com estrutura, orientação, serviços e oportunidades para o time.</p>
+      </div>
+      <div class="partners-empty partners-empty-compact" aria-label="Área de colaboradores">
+        <div class="partners-empty-mark" aria-hidden="true">
+          <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24">
+            <path d="M8 12h8M12 8v8"></path><circle cx="12" cy="12" r="9"></circle>
+          </svg>
+        </div>
+        <span>REDE DE APOIO</span>
+        <strong>Colaboradores da Equipe Órion</strong>
+        <p>Os colaboradores serão apresentados aqui.</p>
+      </div>
     </article>
   </div>
-</section>
 
-<section class="seasons" id="temporadas">
-  <div class="section-heading">
+  <div class="partners-cta">
     <div>
-      <p class="section-index" data-reveal>02 / TEMPORADAS</p>
-      <h2 data-reveal>Uma história em<br><em>movimento.</em></h2>
+      <span>QUER FAZER PARTE?</span>
+      <h3>Ajude a construir o próximo capítulo.</h3>
+      <p>Empresas, profissionais e apoiadores podem conversar diretamente com a equipe.</p>
     </div>
-    <p data-reveal>
-      Duas formações, diferentes momentos e a mesma vontade de construir algo maior em equipe.
-    </p>
+    <a class="btn btn-light" href="https://wa.me/5531995969689" rel="noopener noreferrer" target="_blank" aria-label="Falar com a Equipe Órion pelo WhatsApp sobre parceria">
+      Quero apoiar a Órion
+      <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+    </a>
   </div>
-
-  <article class="season season-one">
-    <div class="season-copy" data-reveal>
-      <div class="season-number">01</div>
-      <p class="season-label">PRIMEIRA TEMPORADA</p>
-      <h3>Onde a identidade começou a ganhar forma.</h3>
-      <p>
-        Foi aqui que vieram os primeiros desafios, as primeiras soluções improvisadas,
-        os primeiros erros e as primeiras conquistas que definiram o jeito Órion de trabalhar.
-      </p>
-      <div class="season-meta">
-        <span>primeira equipe</span>
-        <span>primeiros projetos</span>
-        <span>primeiros resultados</span>
-      </div>
-    </div>
-
-    <div class="season-gallery" data-slider="first" data-reveal>
-      <div class="season-track">
-        <figure class="season-slide is-active">
-          <img src="./assets/primeira-equipe-01.webp" alt="Primeira equipe da Órion exibindo medalhas." loading="lazy" decoding="async">
-          <figcaption><span>01</span><strong>O começo da jornada.</strong></figcaption>
-        </figure>
-        <figure class="season-slide">
-          <img src="./assets/primeira-equipe-02.webp" alt="Primeira equipe da Órion em um de seus primeiros momentos." loading="lazy" decoding="async">
-          <figcaption><span>02</span><strong>Aprender fazendo.</strong></figcaption>
-        </figure>
-      </div>
-      <div class="slider-controls">
-        <div class="slider-counter"><strong>01</strong><span>/ 02</span></div>
-        <div class="slider-dots" aria-label="Selecionar foto">
-          <button type="button" class="is-active" data-slide-dot="0" aria-label="Foto 1" aria-current="true"></button>
-          <button type="button" data-slide-dot="1" aria-label="Foto 2" aria-current="false"></button>
-        </div>
-      </div>
-    </div>
-  </article>
-
-  <article class="season season-two">
-    <div class="season-media-grid" data-reveal>
-      <figure class="season-main-photo">
-        <img src="./assets/momento-equipe-02.webp" alt="Equipe Órion atual reunida atrás da mesa de apresentação." loading="lazy" decoding="async">
-        <figcaption>NOVA FORMAÇÃO / MESMO PROPÓSITO</figcaption>
-      </figure>
-      <figure class="season-side-photo">
-        <img src="./assets/bandeira-orion.webp" alt="Bandeira preta da Equipe Órion." loading="lazy" decoding="async">
-      </figure>
-    </div>
-
-    <div class="season-copy season-copy-right" data-reveal>
-      <div class="season-number">02</div>
-      <p class="season-label">SEGUNDA TEMPORADA</p>
-      <h3>Mais experiência. Mais ideias. Mais equipe.</h3>
-      <p>
-        A nova formação carrega tudo o que foi aprendido antes e abre espaço para novas
-        perspectivas, novas soluções e novos capítulos da história.
-      </p>
-      <a class="line-link" href="https://www.tiktok.com/@equipe_orion" target="_blank" rel="noopener noreferrer">
-        Acompanhe os bastidores no TikTok
-      </a>
-    </div>
-  </article>
+</div>
 </section>
-
-<section class="identity-break">
-  <div class="identity-photo" data-reveal>
-    <img src="./assets/momento-equipe-03.webp" alt="Equipe Órion comemorando em um evento." loading="lazy" decoding="async">
-  </div>
-  <div class="identity-word" aria-hidden="true">ÓRION</div>
-  <div class="identity-quote" data-reveal>
-    <p>“Construir melhor começa por construir juntos.”</p>
-  </div>
-</section>
-
-<section class="awards" id="conquistas">
-  <div class="section-heading awards-heading">
-    <div>
-      <p class="section-index" data-reveal>03 / CONQUISTAS</p>
-      <h2 data-reveal>Resultados que<br><em>contam a história.</em></h2>
-    </div>
-    <p data-reveal>
-      Cada troféu representa um processo: estudo, tentativa, ajuste, parceria e trabalho de equipe.
-    </p>
-  </div>
-
-  <div class="awards-shell" data-reveal>
-    <div class="awards-topbar">
-      <span>ARRASTE PARA EXPLORAR</span>
-      <span class="awards-count">05 CONQUISTAS</span>
-    </div>
-
-    <div class="awards-track" id="awardsTrack">
-      <article class="award-card">
-        <div class="award-image">
-          <img src="./assets/trofeus-conjunto.jpg" alt="Conjunto de troféus conquistados pela Equipe Órion." loading="lazy" decoding="async">
-        </div>
-        <div class="award-copy"><span>01 / TRAJETÓRIA</span><h3>Conquistas da Órion</h3><p>Uma visão geral dos reconhecimentos construídos ao longo da caminhada.</p></div>
-      </article>
-      <article class="award-card">
-        <div class="award-image">
-          <img src="./assets/trofeu-alianca-vencedora.jpg" alt="Troféu Aliança Vencedora." loading="lazy" decoding="async">
-        </div>
-        <div class="award-copy"><span>02 / RECONHECIMENTO</span><h3>Aliança Vencedora</h3><p>Parceria, estratégia e trabalho coletivo reconhecidos em competição.</p></div>
-      </article>
-      <article class="award-card">
-        <div class="award-image">
-          <img src="./assets/trofeu-automacao.jpg" alt="Troféu de Automação." loading="lazy" decoding="async">
-        </div>
-        <div class="award-copy"><span>03 / AUTOMAÇÃO</span><h3>Automação</h3><p>Reconhecimento pela aplicação prática de tecnologia e desenvolvimento.</p></div>
-      </article>
-      <article class="award-card">
-        <div class="award-image">
-          <img src="./assets/trofeu-alianca-finalista-2025.jpg" alt="Troféu Aliança Finalista 2025." loading="lazy" decoding="async">
-        </div>
-        <div class="award-copy"><span>04 / ROBOCOPA 2025</span><h3>Aliança Finalista</h3><p>Presença entre os finalistas da Robocopa dos Campeões de 2025.</p></div>
-      </article>
-      <article class="award-card">
-        <div class="award-image">
-          <img src="./assets/trofeu-premio-excelencia-2024.jpg" alt="Troféu Prêmio Excelência 2024." loading="lazy" decoding="async">
-        </div>
-        <div class="award-copy"><span>05 / ROBOCOPA 2024</span><h3>Prêmio Excelência</h3><p>Um dos marcos que ajudaram a consolidar a trajetória da equipe.</p></div>
-      </article>
-    </div>
-
-    <div class="awards-progress"><span id="awardsProgress"></span></div>
-  </div>
-</section>
-
-<section class="partners partners-v2" id="parceiros">
-  <div class="partners-v2-shell">
-    <div class="partners-v2-head">
-      <div>
-        <p class="section-index" data-reveal>04 / PARCEIROS</p>
-        <h2 data-reveal>Quem acredita<br><em>entra para a história.</em></h2>
-      </div>
-      <p data-reveal>
-        A Órion cresce com pessoas e marcas que acreditam em educação, tecnologia
-        e no potencial de uma equipe que aprende construindo.
-      </p>
-    </div>
-
-    <div class="partners-v2-stage" data-reveal>
-      <div class="partners-v2-watermark" aria-hidden="true">PARTNERS</div>
-      <div class="partners-v2-gridline" aria-hidden="true"></div>
-
-      <article class="partner-v2-card partner-v2-card-main">
-        <div class="partner-v2-top">
-          <span>01</span>
-          <small>PATROCINADORES OFICIAIS</small>
-        </div>
-        <div class="partner-v2-logo-area">
-          <div class="partner-v2-logo-placeholder" aria-hidden="true">+</div>
-          <div>
-            <strong>Marcas que impulsionam a Órion</strong>
-            <p>Espaço destinado aos patrocinadores oficiais da temporada.</p>
-          </div>
-        </div>
-        <div class="partner-v2-bottom">
-          <span>TECNOLOGIA</span><span>EDUCAÇÃO</span><span>INOVAÇÃO</span>
-        </div>
-      </article>
-
-      <article class="partner-v2-card">
-        <div class="partner-v2-top">
-          <span>02</span>
-          <small>COLABORADORES</small>
-        </div>
-        <div class="partner-v2-mini">
-          <div class="partner-v2-icon partner-v2-icon-ring" aria-hidden="true"></div>
-          <div>
-            <strong>Conhecimento que soma.</strong>
-            <p>Profissionais, instituições e iniciativas que ajudam a equipe a ir além.</p>
-          </div>
-        </div>
-      </article>
-
-      <article class="partner-v2-card partner-v2-card-accent">
-        <div class="partner-v2-top">
-          <span>03</span>
-          <small>PRÓXIMA MARCA</small>
-        </div>
-        <div class="partner-v2-mini">
-          <div class="partner-v2-icon partner-v2-icon-plus" aria-hidden="true">+</div>
-          <div>
-            <strong>Sua marca pode estar aqui.</strong>
-            <p>Faça parte dos próximos projetos, eventos e conquistas da Equipe Órion.</p>
-          </div>
-        </div>
-      </article>
-    </div>
-
-    <div class="partners-v2-footer">
-      <div data-reveal>
-        <span>QUER FAZER PARTE?</span>
-        <strong>Ajude a construir o próximo capítulo.</strong>
-      </div>
-      <a class="button button-primary" href="https://wa.me/5531995969689" target="_blank" rel="noopener noreferrer" data-reveal>
-        Quero apoiar a Órion
-      </a>
-    </div>
-  </div>
-</section>
-
-<section class="contact" id="contato">
-  <div class="contact-mark" aria-hidden="true">ORION</div>
-  <div class="contact-inner">
-    <div class="contact-copy">
-      <p class="section-index" data-reveal>05 / CONTATO</p>
-      <h2 data-reveal>O próximo projeto<br>pode começar com<br><em>uma conversa.</em></h2>
-      <p data-reveal>Conheça a equipe, acompanhe os bastidores ou converse sobre parceria e colaboração.</p>
-    </div>
-
-    <div class="contact-links" data-reveal>
-      <a href="https://www.instagram.com/equipe_orion_?stkn=ejUydjB6NHg0eGwz" target="_blank" rel="noopener noreferrer">
-        <span>Instagram</span><strong>@equipe_orion_</strong>
-      </a>
-      <a href="https://www.tiktok.com/@equipe_orion" target="_blank" rel="noopener noreferrer">
-        <span>TikTok</span><strong>@equipe_orion</strong>
-      </a>
-      <a href="https://wa.me/5531995969689" target="_blank" rel="noopener noreferrer">
-        <span>WhatsApp</span><strong>Falar com a equipe</strong>
-      </a>
-    </div>
-  </div>
+<section aria-labelledby="contato-title" class="section contact" id="contato">
+<div class="wrap contact-grid">
+<div class="contact-copy" data-reveal="up"><p class="eyebrow">VAMOS IMAGINAR JUNTOS?</p><h2 class="section-title" id="contato-title">O próximo passo<br/>começa com uma<br/><em>conversa.</em></h2><p class="section-desc">Conheça nosso trabalho, compartilhe uma ideia ou converse sobre formas de colaborar com a equipe.</p><a aria-label="Falar com a Equipe Órion pelo WhatsApp" class="btn btn-dark orion-fale-button" href="https://wa.me/5531995969689" rel="noopener noreferrer" target="_blank">Fale com a Órion<svg aria-hidden="true" class="" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 24 24"><path d="M7 17 17 7M7 7h10v10"></path></svg></a><a class="contact-handle" href="https://www.instagram.com/equipe_orion_?stkn=ejUydjB6NHg0eGwz" rel="noopener noreferrer" target="_blank"><svg aria-hidden="true" class="" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 24 24"><rect height="18" rx="5" width="18" x="3" y="3"></rect><circle cx="12" cy="12" r="4"></circle><path d="M17.4 6.6h.01"></path></svg> @equipe_orion_</a></div>
+<div class="contact-right" data-reveal="up"><div aria-hidden="true" class="contact-seal"><img alt="" data-embedded-key="logo-orion" height="436" loading="lazy" src="./assets/logo-orion.png" width="539" decoding="async"/><span>CONSTRUIR É MELHOR JUNTOS</span></div><div class="contact-options contact-socials">
+<a aria-label="Abrir Instagram da Equipe Órion" class="contact-option contact-social-option" href="https://www.instagram.com/equipe_orion_?stkn=ejUydjB6NHg0eGwz" rel="noopener noreferrer" target="_blank">
+<h3>Instagram</h3><p>Fotos, projetos e novidades da Equipe Órion.</p>
+<svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 24 24"><rect height="18" rx="5" width="18" x="3" y="3"></rect><circle cx="12" cy="12" r="4"></circle><path d="M17.4 6.6h.01"></path></svg>
+</a>
+<a aria-label="Abrir TikTok da Equipe Órion" class="contact-option contact-social-option" href="https://www.tiktok.com/@equipe_orion?_r=1&amp;_t=ZS-9AALFFs7zR1" rel="noopener noreferrer" target="_blank">
+<h3>TikTok</h3><p>Bastidores, vídeos e momentos da equipe.</p>
+<svg aria-hidden="true" fill="currentColor" viewbox="0 0 24 24"><path d="M16.7 3c.3 1.9 1.3 3.2 3.3 3.7v3.1c-1.2 0-2.3-.3-3.3-.9v5.8c0 4.2-2.8 6.3-6.2 6.3-3 0-5.5-2.2-5.5-5.2 0-3.1 2.6-5.4 5.8-5.4.4 0 .8 0 1.2.1v3.2c-.4-.1-.8-.2-1.2-.2-1.3 0-2.4.9-2.4 2.2 0 1.2 1 2.1 2.2 2.1 1.4 0 2.6-.8 2.6-2.9V3h3.5Z"></path></svg>
+</a>
+<a aria-label="Falar com a Equipe Órion pelo WhatsApp" class="contact-option contact-social-option contact-whatsapp" href="https://wa.me/5531995969689" rel="noopener noreferrer" target="_blank">
+<h3>WhatsApp</h3><p>Fale diretamente com a equipe.</p>
+<svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24"><path d="M20 11.6a8 8 0 0 1-11.8 7L4 20l1.4-4A8 8 0 1 1 20 11.6Z"></path><path d="M9 8.5c.4 2.6 2.4 4.6 5 5l1.2-1.2c.3-.3.7-.4 1-.2l1.8.8"></path></svg>
+</a>
+</div></div>
+</div>
 </section>
 </main>
+<footer class="site-footer"><div class="wrap footer-row"><a class="footer-brand" href="#inicio"><img alt="" height="290" src="./assets/orion-mark.png" width="352" decoding="async"/>EQUIPE ÓRION</a><span>E. E. Presidente Tancredo Neves · Caeté — MG</span><div class="footer-links"><a href="https://www.instagram.com/equipe_orion_?stkn=ejUydjB6NHg0eGwz" rel="noopener noreferrer" target="_blank">Instagram <svg aria-hidden="true" class="" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 24 24"><path d="M7 17 17 7M7 7h10v10"></path></svg></a><a href="#inicio">Topo <svg aria-hidden="true" class="" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 24 24"><path d="M12 19V5m-6 6 6-6 6 6"></path></svg></a></div></div></footer>
+<dialog aria-describedby="dialogDescription" aria-labelledby="dialogTitle" class="media-dialog" id="mediaDialog">
+<div class="dialog-top"><p class="dialog-category" id="dialogCategory"></p><button aria-label="Fechar fotografia" class="dialog-close" id="dialogClose" type="button"><svg aria-hidden="true" class="" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"></path></svg></button></div>
+<div class="dialog-layout"><div class="dialog-visual"><img alt="" height="960" id="dialogImage" width="1280" decoding="async"/><span class="dialog-loading" id="dialogLoading" role="status">Carregando fotografia…</span><div class="dialog-error" hidden="" id="dialogError">Não foi possível abrir esta fotografia. Use o link abaixo para abrir a imagem.</div></div><div class="dialog-side"><h2 id="dialogTitle"></h2><p id="dialogDescription"></p><button class="small-control" hidden="" id="dialogContext" type="button">Ver registro completo</button><a class="dialog-open-source" href="#" id="dialogSource" rel="noopener" target="_blank">Abrir imagem em nova aba <svg aria-hidden="true" class="" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 24 24"><path d="M7 17 17 7M7 7h10v10"></path></svg></a></div></div><div aria-label="Selecionar fotografia" class="dialog-thumbnails" hidden="" id="dialogThumbs" role="group"></div>
+<div class="dialog-bottom"><span aria-live="polite" class="dialog-counter" id="dialogCounter" role="status"></span><span class="dialog-hint">Use as teclas ← → para navegar · Esc para fechar</span><div class="dialog-actions"><button aria-label="Fotografia anterior" class="dialog-nav" id="dialogPrev" type="button"><svg aria-hidden="true" class="" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 24 24"><path d="m14 6-6 6 6 6"></path></svg></button><button aria-label="Próxima fotografia" class="dialog-nav" id="dialogNext" type="button"><svg aria-hidden="true" class="" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 24 24"><path d="m10 6 6 6-6 6"></path></svg></button></div></div>
+</dialog>
+<script id="orionMedia" type="application/json">{"moments":[{"src":"embedded:momento-03-960","alt":"Integrantes da Órion comemorando atrás da mesa com o projeto.","title":"Juntos, em cada desafio","category":"Momentos da Órion","description":"A equipe reunida em um momento de comemoração. Na mesa, a identidade da Órion e o projeto apresentado."},{"src":"embedded:momento-02-627","alt":"Equipe Órion reunida atrás da mesa de apresentação.","title":"A equipe e seu projeto","category":"Momentos da Órion","description":"Um registro da equipe no estande, junto ao projeto e à bandeira da Órion."},{"src":"embedded:momento-01-960","alt":"Bandeira escura com o símbolo e o nome Órion.","title":"Nossa identidade","category":"Momentos da Órion","description":"A bandeira que acompanha a equipe: o símbolo e o nome Órion em branco."}],"about":[{"src":"embedded:copa-16-800","alt":"Quatro participantes com medalhas, controles e um protótipo, diante do painel da Copa Órion.","title":"Gente que faz acontecer.","category":"A equipe na Copa Órion","description":"Participantes reunidos com um protótipo e controles durante a Copa Órion 2026."}],"projects":[{"src":"embedded:prototipo-01-720","contextSrc":"embedded:copa-08-800","contextAlt":"Participantes apresentando o protótipo na Copa Órion.","alt":"Detalhe de rodas azuis e uma estrutura de papelão com acabamento que imita tijolos.","title":"Rodas azuis e papelão","category":"Protótipos · Copa Órion 2026","description":"O registro mostra um veículo com rodas azuis e uma estrutura de papelão com acabamento que imita tijolos. Ao lado, um participante segura um controle azul. Abra o registro completo para ver o protótipo com seus apresentadores."},{"src":"embedded:prototipo-02-720","contextSrc":"embedded:copa-09-800","contextAlt":"Participantes apresentando o protótipo na Copa Órion.","alt":"Detalhe de um veículo com recipiente plástico translúcido à frente e controles ao lado.","title":"Uma frente diferente","category":"Protótipos · Copa Órion 2026","description":"Na fotografia, um recipiente plástico translúcido aparece adaptado à frente de um pequeno veículo. O grupo também apresenta controles. Abra o registro completo para ver o grupo e os controles apresentados."},{"src":"embedded:prototipo-03-720","contextSrc":"embedded:copa-10-800","contextAlt":"Participantes apresentando o protótipo na Copa Órion.","alt":"Detalhe de um pequeno veículo com estrutura alongada de papelão e acabamento escuro.","title":"Extensão em papelão","category":"Protótipos · Copa Órion 2026","description":"O modelo é apresentado com uma extensão de papelão e detalhes escuros junto à base com rodas. A fotografia completa mostra os participantes e os controles ao lado do protótipo."}],"copa":[{"src":"embedded:copa-01-800","alt":"Três participantes com medalhas, diante do painel da Copa Órion.","title":"Copa Órion 2026 · 01","category":"Copa Órion 2026","description":"Três participantes com medalhas, diante do painel da Copa Órion."},{"src":"embedded:copa-02-800","alt":"Três participantes posando com medalhas no espaço da Copa Órion.","title":"Copa Órion 2026 · 02","category":"Copa Órion 2026","description":"Três participantes posando com medalhas no espaço da Copa Órion."},{"src":"embedded:copa-03-800","alt":"Participante com medalha, controle e um protótipo com peça de plástico.","title":"Copa Órion 2026 · 03","category":"Copa Órion 2026","description":"Participante com medalha, controle e um protótipo com peça de plástico."},{"src":"embedded:copa-04-800","alt":"Três participantes com medalhas, um protótipo azul e controles.","title":"Copa Órion 2026 · 04","category":"Copa Órion 2026","description":"Três participantes com medalhas, um protótipo azul e controles."},{"src":"embedded:copa-05-800","alt":"Duas participantes com medalhas e um pequeno veículo amarelo.","title":"Copa Órion 2026 · 05","category":"Copa Órion 2026","description":"Duas participantes com medalhas e um pequeno veículo amarelo."},{"src":"embedded:copa-06-800","alt":"Duas participantes com medalhas, controle e uma estrutura de papelão.","title":"Copa Órion 2026 · 06","category":"Copa Órion 2026","description":"Duas participantes com medalhas, controle e uma estrutura de papelão."},{"src":"embedded:copa-07-800","alt":"Dois participantes com medalhas e um modelo com peça frontal azul.","title":"Copa Órion 2026 · 07","category":"Copa Órion 2026","description":"Dois participantes com medalhas e um modelo com peça frontal azul."},{"src":"embedded:copa-08-800","alt":"Dois participantes exibindo um veículo com rodas azuis e estrutura de papelão.","title":"Copa Órion 2026 · 08","category":"Copa Órion 2026","description":"Dois participantes exibindo um veículo com rodas azuis e estrutura de papelão."},{"src":"embedded:copa-09-800","alt":"Três participantes com medalhas, controles e um protótipo com recipiente plástico.","title":"Copa Órion 2026 · 09","category":"Copa Órion 2026","description":"Três participantes com medalhas, controles e um protótipo com recipiente plástico."},{"src":"embedded:copa-10-800","alt":"Três participantes com medalhas, controles e um protótipo com extensão de papelão.","title":"Copa Órion 2026 · 10","category":"Copa Órion 2026","description":"Três participantes com medalhas, controles e um protótipo com extensão de papelão."},{"src":"embedded:copa-11-800","alt":"Três participantes com medalhas e um protótipo vermelho com peça de papelão.","title":"Copa Órion 2026 · 11","category":"Copa Órion 2026","description":"Três participantes com medalhas e um protótipo vermelho com peça de papelão."},{"src":"embedded:copa-12-800","alt":"Quatro participantes reunidos com medalhas e um protótipo.","title":"Copa Órion 2026 · 12","category":"Copa Órion 2026","description":"Quatro participantes reunidos com medalhas e um protótipo."},{"src":"embedded:copa-13-800","alt":"Três participantes com medalhas e um modelo com peça azul.","title":"Copa Órion 2026 · 13","category":"Copa Órion 2026","description":"Três participantes com medalhas e um modelo com peça azul."},{"src":"embedded:copa-14-800","alt":"Três participantes exibindo troféus e um pequeno veículo.","title":"Copa Órion 2026 · 14","category":"Copa Órion 2026","description":"Três participantes exibindo troféus e um pequeno veículo."},{"src":"embedded:copa-15-800","alt":"Três participantes com medalhas e um pequeno veículo escuro.","title":"Copa Órion 2026 · 15","category":"Copa Órion 2026","description":"Três participantes com medalhas e um pequeno veículo escuro."},{"src":"embedded:copa-16-800","alt":"Quatro participantes com medalhas, controles e um protótipo branco.","title":"Copa Órion 2026 · 16","category":"Copa Órion 2026","description":"Quatro participantes com medalhas, controles e um protótipo branco."},{"src":"embedded:copa-17-800","alt":"Três participantes com medalhas, um controle e um veículo vermelho.","title":"Copa Órion 2026 · 17","category":"Copa Órion 2026","description":"Três participantes com medalhas, um controle e um veículo vermelho."}]}</script>
+<a aria-label="Voltar ao início" class="back-top" hidden="" href="#inicio"><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 24 24"><path d="M12 19V5m-6 6 6-6 6 6"></path></svg><span>Topo</span></a>
 
-<footer class="footer">
-  <div class="footer-brand">
-    <img src="./assets/orion-mark.png" alt="">
-    <strong>ÓRION</strong>
-  </div>
-  <p>E. E. Presidente Tancredo Neves · Caeté — MG</p>
-  <a href="#inicio">Voltar ao topo</a>
-</footer>
+
+
+
 </body>
 </html>
