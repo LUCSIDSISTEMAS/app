@@ -544,3 +544,198 @@ svg{display:block}
   .partners-v2-footer{align-items:stretch;flex-direction:column}
   .partners-v2-footer .button{width:100%}
 }
+
+
+/* v23 — tighter rhythm, arrowless navigation, motion-first polish */
+.hero{min-height:94svh}
+.manifesto{padding:96px 24px 78px}
+.manifesto-lines{margin-top:58px}
+.seasons{padding:96px 0 46px}
+.section-heading{padding-bottom:58px}
+.season{padding:58px 24px 76px}
+.identity-break{padding:32px 24px 92px;min-height:620px}
+.identity-photo{inset:32px 24px 92px}
+.awards{padding:96px 0 102px}
+.partners-v2{padding:96px 24px 104px}
+.partners-v2-head{margin-bottom:46px}
+.partners-v2-stage{min-height:520px}
+.partner-v2-card-main{min-height:520px}
+.contact{min-height:650px;padding:96px 24px 72px}
+.footer{padding-block:26px}
+
+.button{border-radius:0;min-height:48px;padding-inline:22px}
+.button::after{
+  content:"";
+  position:absolute;
+  left:0;bottom:0;
+  width:0;height:2px;
+  background:#fff;
+  transition:width .35s var(--ease);
+}
+.button:hover::after{width:100%}
+.button svg{display:none}
+.text-link span,.line-link span{display:none}
+.hero-footer a span{display:none}
+.line-link{
+  border-bottom-color:rgba(12,183,242,.28);
+  transition:color .25s,border-color .25s;
+}
+.line-link:hover{color:var(--accent-soft);border-bottom-color:var(--accent)}
+.footer>a{transition:color .2s}
+.footer>a:hover{color:var(--accent-soft)}
+
+.slider-controls{
+  padding-top:15px;
+  min-height:32px;
+}
+.slider-controls>div:last-child{display:flex}
+.slider-dots{display:flex;align-items:center;gap:8px}
+.slider-dots button{
+  width:28px;height:3px;
+  border:0;padding:0;
+  background:rgba(255,255,255,.14);
+  cursor:pointer;
+  transition:width .3s var(--ease),background .3s;
+}
+.slider-dots button.is-active{
+  width:54px;
+  background:var(--accent);
+}
+.slider-dots button:focus-visible{outline:2px solid var(--accent);outline-offset:5px}
+
+.awards-topbar>span:last-child{
+  color:rgba(255,255,255,.42);
+  font-size:9px;
+  font-weight:800;
+  letter-spacing:.16em;
+}
+.awards-controls{display:none!important}
+.award-card{
+  border-color:rgba(255,255,255,.065);
+  opacity:.68;
+  transform:scale(.985);
+  transition:opacity .45s var(--ease),transform .45s var(--ease),border-color .3s;
+}
+.award-card.is-near{
+  opacity:1;
+  transform:scale(1);
+  border-color:rgba(12,183,242,.16);
+}
+.awards-track{gap:14px}
+
+.contact-links a{
+  grid-template-columns:100px 1fr;
+}
+.contact-links b{display:none}
+.contact-links a::after{
+  content:"";
+  justify-self:end;
+  width:7px;height:7px;
+  border-radius:50%;
+  background:rgba(255,255,255,.18);
+  box-shadow:0 0 0 0 rgba(12,183,242,0);
+  transition:background .25s,box-shadow .25s,transform .25s;
+}
+.contact-links a:hover::after{
+  background:var(--accent);
+  box-shadow:0 0 0 7px rgba(12,183,242,.08);
+  transform:scale(1.05);
+}
+.contact-links a{grid-template-columns:100px 1fr auto}
+
+.partner-v2-icon-ring{
+  position:relative;
+  border-radius:50%;
+}
+.partner-v2-icon-ring::before,
+.partner-v2-icon-ring::after{
+  content:"";
+  position:absolute;
+  border-radius:50%;
+  border:1px solid rgba(12,183,242,.38);
+}
+.partner-v2-icon-ring::before{inset:10px}
+.partner-v2-icon-ring::after{
+  inset:20px;
+  background:var(--accent);
+  border:0;
+  box-shadow:0 0 18px rgba(12,183,242,.45);
+}
+
+/* smoother, less theatrical reveal */
+[data-reveal]{
+  opacity:0;
+  transform:translateY(18px);
+  filter:none;
+}
+[data-reveal].is-visible{
+  animation:v23Reveal .68s var(--ease) forwards;
+}
+@keyframes v23Reveal{
+  0%{opacity:0;transform:translateY(18px)}
+  100%{opacity:1;transform:none}
+}
+
+/* organized animated section dividers */
+.manifesto,.seasons,.awards,.partners-v2,.contact{
+  position:relative;
+}
+.manifesto::before,.seasons::before,.awards::before,.partners-v2::after,.contact::before{
+  content:"";
+  position:absolute;
+  left:50%;top:0;
+  width:min(var(--max),calc(100% - 48px));
+  height:1px;
+  transform:translateX(-50%) scaleX(.15);
+  transform-origin:center;
+  background:linear-gradient(90deg,transparent,rgba(12,183,242,.42),rgba(255,255,255,.08),transparent);
+  opacity:.65;
+  transition:transform 1s var(--ease);
+}
+.manifesto.section-in::before,.seasons.section-in::before,.awards.section-in::before,.partners-v2.section-in::after,.contact.section-in::before{
+  transform:translateX(-50%) scaleX(1);
+}
+
+.season-main-photo img,.season-side-photo img,.identity-photo img{
+  will-change:transform;
+  transform:translate3d(0,var(--photo-shift,0px),0) scale(1.035);
+}
+.season-media-grid figure:hover img{transform:translate3d(0,var(--photo-shift,0px),0) scale(1.055)}
+
+.partner-v2-card{
+  --lift:0px;
+  transform:translateY(var(--lift));
+}
+.partner-v2-card:hover{--lift:-5px}
+
+@media (max-width:900px){
+  .manifesto{padding:82px 18px 68px}
+  .seasons{padding:82px 0 34px}
+  .section-heading{padding-bottom:46px}
+  .season{padding:50px 18px 66px}
+  .identity-break{padding:24px 18px 72px;min-height:560px}
+  .identity-photo{inset:24px 18px 72px}
+  .awards{padding:82px 0 86px}
+  .partners-v2{padding:82px 18px 88px}
+  .partners-v2-head{margin-bottom:38px}
+  .partner-v2-card-main{min-height:480px}
+  .contact{min-height:580px;padding:82px 18px 62px}
+}
+@media (max-width:640px){
+  .hero{min-height:auto}
+  .manifesto{padding:72px 16px 58px}
+  .manifesto-lines{margin-top:42px}
+  .seasons{padding:72px 0 28px}
+  .section-heading{padding-bottom:38px}
+  .season{padding:44px 16px 58px}
+  .identity-break{padding:18px 16px 58px;min-height:500px}
+  .identity-photo{inset:18px 16px 58px}
+  .awards{padding:72px 0 76px}
+  .partners-v2{padding:72px 16px 78px}
+  .partners-v2-head{margin-bottom:32px}
+  .partner-v2-card-main{min-height:440px}
+  .contact{min-height:540px;padding:72px 16px 54px}
+  .contact-links a{grid-template-columns:76px 1fr auto}
+  .awards-topbar{margin-bottom:14px}
+  .awards-topbar>span:last-child{display:none}
+}
