@@ -26,13 +26,13 @@
     menu.classList.toggle('open', open);
     toggle.setAttribute('aria-expanded', String(open));
     toggle.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
-    document.body.classList.toggle('menu-open', open && innerWidth <= 760);
+    document.body.classList.toggle('menu-open', open && innerWidth <= 1200);
   };
   toggle?.addEventListener('click', () => setMenu(toggle.getAttribute('aria-expanded') !== 'true'));
   menu?.addEventListener('click', e => { if (e.target.closest('a')) setMenu(false); });
   addEventListener('click', e => { if (!e.target.closest('.nav')) setMenu(false); });
   addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
-  matchMedia('(min-width:761px)').addEventListener('change', e => { if (e.matches) setMenu(false); });
+  matchMedia('(min-width:1201px)').addEventListener('change', e => { if (e.matches) setMenu(false); });
 
   let scrollFrame = 0;
   const syncScroll = () => {

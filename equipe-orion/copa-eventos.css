@@ -8,3 +8,6 @@ dialog.viewer{width:min(94vw,1000px);max-width:none;max-height:94vh;padding:0;bo
 @media(max-width:760px){.nav{min-height:64px;align-items:flex-start;flex-direction:column;padding:12px 0;gap:10px}.nav-links{width:100%;overflow-x:auto;padding-bottom:2px;scrollbar-width:thin}.nav-links a{flex:0 0 auto;padding-inline:12px;font-size:.78rem}.hero{padding-top:72px}.gallery{columns:2 145px;column-gap:10px}.photo-card{margin-bottom:10px;border-radius:14px}.photo-card figcaption{padding:9px 10px;display:block}.photo-card figcaption strong{display:block;text-align:left;margin-top:3px}.video-grid{grid-template-columns:1fr}.section-heading{display:block}.section-heading p{margin-top:7px}.closing{align-items:flex-start;flex-direction:column}.footer-row{flex-direction:column}.footer-links{flex-wrap:wrap}}
 @media(max-width:370px){main,.nav,.footer-row{width:calc(100% - 24px)}.nav-links a{padding-inline:10px;font-size:.72rem}.gallery{columns:1}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+
+/* Todos os destinos continuam acessíveis em telas estreitas. */
+@media(max-width:760px){.nav-links{flex-wrap:wrap;gap:3px;overflow-x:visible}.nav-links a{padding-inline:9px;font-size:.76rem}}

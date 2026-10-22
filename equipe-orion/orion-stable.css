@@ -832,33 +832,6 @@ svg{display:block;flex:0 0 auto}
   .wrap,.seasons-wrap,.trophy-wrap,.timeline-wrap,.partners-wrap{width:calc(100% - 28px)}
   .section{padding:52px 0}
 
-  .site-header{top:8px}
-  .nav{
-    width:calc(100% - 16px);min-height:60px;
-    padding:7px 8px 7px 13px;border-radius:18px;
-  }
-  .brand img{width:36px;height:32px}
-  .brand-label b{font-size:14px}
-  .brand-label small{display:none}
-  .menu-toggle{display:grid}
-  .nav-links{
-    position:absolute;left:8px;right:8px;top:68px;
-    display:grid;gap:0;padding:10px;
-    border:1px solid var(--line-strong);border-radius:17px;
-    background:rgba(9,13,16,.985);backdrop-filter:blur(18px);
-    box-shadow:0 22px 50px rgba(0,0,0,.40);
-    opacity:0;visibility:hidden;transform:translateY(-8px);
-    transition:opacity .22s,visibility .22s,transform .22s;
-  }
-  .nav-links.open{opacity:1;visibility:visible;transform:none}
-  .nav-links a{
-    min-height:45px;padding:0 12px;border-radius:10px;
-    border-bottom:1px solid rgba(255,255,255,.055);
-  }
-  .nav-links a:last-child{border-bottom:0}
-  .nav-links .nav-cta{margin:7px 0 0;justify-content:center;color:#051015}
-  .reading-progress{width:calc(100% - 42px);margin-top:5px}
-
   .hero{padding:94px 0 34px}
   .hero::after{top:16%;font-size:37vw}
   .hero-grid{grid-template-columns:1fr;gap:28px}
@@ -970,13 +943,15 @@ svg{display:block;flex:0 0 auto}
 
 /* Órion: links para as galerias anuais e foco por teclado. */
 .nav-links a[href="./primeira-copa-orion.html"],
-.nav-links a[href="./segunda-copa-orion.html"]{
+.nav-links a[href="./segunda-copa-orion.html"],
+.nav-links a[href="./depoimentos.html"]{
   color:#e4f7fb;
   border:1px solid rgba(72,198,220,.17);
   background:rgba(49,164,190,.07);
 }
 .nav-links a[href="./primeira-copa-orion.html"]:hover,
-.nav-links a[href="./segunda-copa-orion.html"]:hover{
+.nav-links a[href="./segunda-copa-orion.html"]:hover,
+.nav-links a[href="./depoimentos.html"]:hover{
   color:#061015;
   border-color:var(--accent);
   background:var(--accent);
@@ -985,8 +960,36 @@ svg{display:block;flex:0 0 auto}
   outline:2px solid #69e0f2;
   outline-offset:3px;
 }
-@media (min-width:761px) and (max-width:1100px){
-  .nav-links{gap:0}
-  .nav-links a{padding-inline:8px;font-size:10px}
-  .nav-links .nav-cta{padding-inline:12px}
+
+
+/* Menu compacto mantém espaço para as páginas próprias da equipe. */
+@media(max-width:1200px){
+  .site-header{top:8px}
+  .nav{
+    width:calc(100% - 16px);min-height:60px;
+    padding:7px 8px 7px 13px;border-radius:18px;
+  }
+  .brand img{width:36px;height:32px}
+  .brand-label b{font-size:14px}
+  .brand-label small{display:none}
+  .menu-toggle{display:grid}
+  .nav-links{
+    position:absolute;left:8px;right:8px;top:68px;
+    display:grid;gap:0;padding:10px;
+    border:1px solid var(--line-strong);border-radius:17px;
+    background:rgba(9,13,16,.985);backdrop-filter:blur(18px);
+    box-shadow:0 22px 50px rgba(0,0,0,.40);
+    opacity:0;visibility:hidden;transform:translateY(-8px);
+    transition:opacity .22s,visibility .22s,transform .22s;
+  }
+  .nav-links.open{opacity:1;visibility:visible;transform:none}
+  .nav-links a{
+    min-height:45px;padding:0 12px;border-radius:10px;
+    border-bottom:1px solid rgba(255,255,255,.055);
+  }
+  .nav-links a:last-child{border-bottom:0}
+  .nav-links .nav-cta{margin:7px 0 0;justify-content:center;color:#051015}
+  .reading-progress{width:calc(100% - 42px);margin-top:5px}
+
+  .nav-links{max-height:calc(100dvh - 94px);overflow-y:auto}
 }
