@@ -1,0 +1,41 @@
+/* Gentle motion across the team, galleries and student stories. */
+.site-header{transition:box-shadow .25s ease,border-color .25s ease}
+.site-header.is-scrolled{box-shadow:0 5px 22px #183f6710;border-bottom-color:#d4dfe8}
+.nav-links>a:not(.nav-contact){position:relative}
+.nav-links>a:not(.nav-contact)::after{content:"";position:absolute;left:10px;right:10px;bottom:6px;height:2px;background:#174c80;transform:scaleX(0);transform-origin:left;transition:transform .22s ease}
+.nav-links>a:not(.nav-contact):is(:hover,:focus-visible)::after{transform:scaleX(1)}
+.menu-toggle span{transition:transform .2s ease}
+.hero-photo,.team-photos figure,.project-photo img{border-radius:10px}
+.hero-photo img{border-radius:10px}
+.hero-photo{box-shadow:0 12px 30px #183f6710}
+.award-card{border-radius:10px;transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
+.social-links a{border-radius:8px;transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease,background .25s ease}
+.social-links svg{transition:transform .25s ease}
+.button,.nav-contact,.edition-switch a,.closing a{transition:transform .2s ease,box-shadow .2s ease,background .2s ease}
+.season-tabs button{transition:color .2s ease,background .2s ease,border-color .2s ease}
+.team-photos figure{transition:box-shadow .25s ease}
+.photo-button,.image-button,.print-link{transition:filter .25s ease}
+@media(hover:hover){
+  .award-card:hover{transform:translateY(-5px);box-shadow:0 12px 28px #183f6710;border-color:#bdcddc}
+  .social-links a:hover{transform:translateY(-4px);box-shadow:0 10px 25px #183f6710}
+  .social-links a:hover svg{transform:translateY(-2px)}
+  .button:hover,.nav-contact:hover,.edition-switch a:hover,.closing a:hover{transform:translateY(-2px);box-shadow:0 6px 16px #1234541c}
+  .team-photos figure:hover{box-shadow:0 7px 20px #183f6715}
+  .photo-button:hover,.image-button:hover,.print-link:hover{filter:brightness(1.035)}
+}
+.button:active,.social-links a:active{transform:translateY(0)}
+@media(prefers-reduced-motion:no-preference){
+  .season-panel:not([hidden]){animation:panel-enter .32s ease both}
+  dialog[open]{animation:viewer-enter .2s ease both}
+  dialog[open]::backdrop{animation:backdrop-enter .2s ease both}
+  .nav-explore[open] .explore-links{animation:panel-enter .18s ease both}
+  @media(max-width:1050px){.nav-links.open{animation:panel-enter .2s ease both}}
+}
+@keyframes panel-enter{from{opacity:.35;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}
+@keyframes viewer-enter{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@keyframes backdrop-enter{from{opacity:0}to{opacity:1}}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto!important}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .award-card:hover,.social-links a:hover,.social-links a:hover svg,.button:hover,.nav-contact:hover,.edition-switch a:hover,.closing a:hover{transform:none}
+}
