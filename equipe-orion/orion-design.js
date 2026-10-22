@@ -14,6 +14,33 @@
   document.addEventListener('click', event => { if (!event.target.closest('.nav')) setMenu(false); });
   compact.addEventListener('change', () => setMenu(false));
 
+  const explore = document.querySelector('.nav-explore');
+  document.addEventListener('click', event => {
+    if (!event.target.closest('.nav-explore') || event.target.closest('.explore-links a')) explore.open = false;
+  });
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && explore.open) { explore.open = false; explore.querySelector('summary').focus(); }
+  });
+  const tabs = [...document.querySelectorAll('.season-tabs [role="tab"]')];
+  const activateTab = tab => {
+    tabs.forEach(item => {
+      const active = item === tab;
+      item.setAttribute('aria-selected', String(active));
+      item.tabIndex = active ? 0 : -1;
+      document.getElementById(item.getAttribute('aria-controls')).hidden = !active;
+    });
+  };
+  tabs.forEach((tab, index) => {
+    tab.addEventListener('click', () => activateTab(tab));
+    tab.addEventListener('keydown', event => {
+      const positions = { ArrowRight: (index + 1) % tabs.length, ArrowLeft: (index + tabs.length - 1) % tabs.length, Home: 0, End: tabs.length - 1 };
+      if (!(event.key in positions)) return;
+      event.preventDefault();
+      const next = tabs[positions[event.key]];
+      activateTab(next); next.focus();
+    });
+  });
+
   const viewer = document.querySelector('#photoViewer');
   const picture = viewer.querySelector('.viewer-image');
   const title = viewer.querySelector('#viewerTitle');

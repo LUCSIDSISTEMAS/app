@@ -16,8 +16,8 @@
   <link rel="icon" href="./assets/orion-mark.png" type="image/png">
   <link rel="preload" as="image" href="./assets/momento-equipe-03.webp">
   <link rel="stylesheet" href="./patrocinadores.css?v=1">
-  <link rel="stylesheet" href="./orion-design.css?v=20261022">
-  <script defer src="./orion-design.js?v=20261022"></script>
+  <link rel="stylesheet" href="./orion-design.css?v=20261022b">
+  <script defer src="./orion-design.js?v=20261022b"></script>
   <script defer src="./patrocinadores.js?v=1"></script>
 </head>
 <body>
@@ -27,9 +27,9 @@
       <a class="brand" href="#inicio" aria-label="Equipe Órion — início"><img src="./assets/orion-mark.png" width="42" height="36" alt=""><span>ÓRION<small>ROBÓTICA ESTUDANTIL</small></span></a>
       <button class="menu-toggle" id="menuToggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="navLinks"><span></span><span></span></button>
       <div class="nav-links" id="navLinks">
-        <a href="#sobre">A equipe</a><a href="#projetos">Projetos</a><a href="#copa">Conquistas</a>
-        <a class="nav-page" href="./primeira-copa-orion.html">1ª Copa Órion</a><a class="nav-page" href="./segunda-copa-orion.html">2ª Copa Órion</a><a class="nav-page" href="./depoimentos.html">Depoimentos</a>
-        <a href="#parceiros">Patrocinadores</a><a class="nav-contact" href="#contato">Fale com a equipe <span aria-hidden="true">↗</span></a>
+        <a href="#sobre">A equipe</a><a href="#projetos">Temporada 2026</a><a href="#copa">Conquistas</a>
+        <details class="nav-explore"><summary>Explore <span aria-hidden="true">⌄</span></summary><div class="explore-links"><span>ENCONTROS E HISTÓRIAS</span><a href="./primeira-copa-orion.html">1ª Copa Órion</a><a href="./segunda-copa-orion.html">2ª Copa Órion</a><a href="./depoimentos.html">Depoimentos dos alunos</a><a href="#parceiros">Patrocinadores</a></div></details>
+        <a class="nav-contact" href="#contato">Contato <span aria-hidden="true">↗</span></a>
       </div>
     </nav>
   </header>
@@ -39,8 +39,8 @@
         <p class="eyebrow"><span class="status-dot"></span> CAETÉ, MG · ROBÓTICA ESTUDANTIL</p>
         <h1 id="hero-title">Robótica que<br><span>ganha vida.</span></h1>
         <p class="hero-description">Somos a Equipe Órion. Na E. E. Presidente Tancredo Neves, aprendemos construindo, testando e compartilhando cada descoberta.</p>
-        <div class="hero-actions"><a class="button primary" href="#sobre">Conheça a Órion <span aria-hidden="true">↗</span></a><a class="text-link" href="#projetos">Nossos projetos <span aria-hidden="true">↓</span></a></div>
-        <div class="hero-note"><span class="small-star" aria-hidden="true">✦</span><p>Da escola para novos desafios.<br><strong>Sempre em equipe.</strong></p></div>
+        <div class="hero-actions"><a class="button primary" href="#sobre">Conheça a Órion <span aria-hidden="true">↗</span></a><a class="text-link" href="#projetos">Temporada 2026 <span aria-hidden="true">↓</span></a></div>
+        <div class="hero-note"><span class="hero-note-rule" aria-hidden="true"></span><p>Da escola para novos desafios.<br><strong>Sempre em equipe.</strong></p></div>
       </div>
       <figure class="hero-photo">
         <button class="image-button" type="button" data-image="./assets/momento-equipe-03.webp" data-title="Juntos, em cada desafio" data-group="equipe" aria-label="Ampliar foto da Equipe Órion comemorando">
@@ -67,8 +67,15 @@
     </section>
     <section class="project-section" id="projetos" aria-labelledby="projetos-title">
       <div class="wrap project-grid">
-        <div class="project-copy"><p class="eyebrow">SEGUNDA TEMPORADA · 2026</p><h2 id="projetos-title">Novas ideias.<br>O mesmo propósito.</h2><p>A nova formação continua essa história com mais experiência, criatividade e vontade de construir. Nosso projeto ganha forma quando cada integrante contribui.</p>
-          <ol class="project-steps"><li><span>01</span><div><strong>Pensar em possibilidades</strong><p>Compartilhar perguntas e encontrar soluções juntos.</p></div></li><li><span>02</span><div><strong>Colocar a mão na massa</strong><p>Montar, testar e descobrir o que pode melhorar.</p></div></li><li><span>03</span><div><strong>Levar o projeto adiante</strong><p>Apresentar o trabalho e aprender com novos desafios.</p></div></li></ol>
+        <div class="project-copy"><p class="eyebrow">SEGUNDA TEMPORADA · 2026</p><h2 id="projetos-title">Três áreas.<br>Uma só equipe.</h2><p>A nova formação continua essa história com mais experiência, criatividade e vontade de construir. Nosso projeto ganha forma quando cada integrante contribui.</p>
+          <div class="season-tabs" role="tablist" aria-label="Áreas da temporada 2026">
+            <button id="tab-gestao" role="tab" aria-selected="true" aria-controls="painel-gestao" tabindex="0">Gestão</button>
+            <button id="tab-programacao" role="tab" aria-selected="false" aria-controls="painel-programacao" tabindex="-1">Programação</button>
+            <button id="tab-engenharia" role="tab" aria-selected="false" aria-controls="painel-engenharia" tabindex="-1">Engenharia</button>
+          </div>
+          <div class="season-panel" id="painel-gestao" role="tabpanel" aria-labelledby="tab-gestao" tabindex="0"><span class="area-index">01 / ORGANIZAÇÃO</span><h3>Um plano para cada desafio.</h3><p>Organização das atividades, comunicação e acompanhamento do projeto. A gestão conecta as áreas e ajuda a equipe a avançar em conjunto.</p><ul><li>Planejamento e divisão de tarefas</li><li>Comunicação e apresentação da equipe</li><li>Acompanhamento de prazos e etapas</li></ul></div>
+          <div class="season-panel" id="painel-programacao" role="tabpanel" aria-labelledby="tab-programacao" tabindex="0" hidden><span class="area-index">02 / CÓDIGO</span><h3>Da lógica ao movimento.</h3><p>Desenvolvimento da lógica que orienta o robô. A programação transforma os objetivos do projeto em comandos, testa respostas e ajusta o comportamento do sistema.</p><ul><li>Lógica e desenvolvimento do código</li><li>Integração de comandos e sensores</li><li>Testes, ajustes e automação</li></ul></div>
+          <div class="season-panel" id="painel-engenharia" role="tabpanel" aria-labelledby="tab-engenharia" tabindex="0" hidden><span class="area-index">03 / CONSTRUÇÃO</span><h3>Ideias que ganham estrutura.</h3><p>Construção e evolução física do projeto. A engenharia reúne montagem, mecanismos e testes para transformar uma ideia em um robô pronto para os desafios.</p><ul><li>Estrutura e montagem do robô</li><li>Mecanismos e componentes</li><li>Testes de funcionamento e melhorias</li></ul></div>
         </div>
         <figure class="project-photo"><button class="image-button" type="button" data-image="./assets/momento-equipe-02.webp" data-title="A equipe e seu projeto · 2026" data-group="equipe" aria-label="Ampliar foto da equipe com seu projeto"><img src="./assets/momento-equipe-02.webp" width="627" height="468" alt="A nova formação da Órion reunida atrás da mesa de apresentação do projeto." loading="lazy" decoding="async"><span class="image-expand" aria-hidden="true">↗</span></button><figcaption><span class="tag">EM EQUIPE</span><span>Uma nova fase da Órion.</span></figcaption></figure>
       </div>
@@ -112,7 +119,7 @@
     </div></section>
     <section class="contact-section wrap" id="contato" aria-labelledby="contato-title"><div class="contact-panel">
       <div><p class="eyebrow">VAMOS CONVERSAR?</p><h2 id="contato-title">O próximo passo<br>começa com você.</h2><p>Conheça nosso trabalho, compartilhe uma ideia<br class="desktop-break"> ou faça parte da jornada da Órion.</p><a class="button primary" href="https://wa.me/5531995969689" target="_blank" rel="noopener noreferrer">Fale com a equipe <span aria-hidden="true">↗</span></a></div>
-      <div class="contact-links"><a href="https://www.instagram.com/equipe_orion_/" target="_blank" rel="noopener noreferrer"><span><small>FOTOS, BASTIDORES E NOVIDADES</small><strong>Instagram</strong></span><span aria-hidden="true">↗</span></a><a href="https://www.tiktok.com/@equipe_orion" target="_blank" rel="noopener noreferrer"><span><small>VÍDEOS E MOMENTOS DA EQUIPE</small><strong>TikTok</strong></span><span aria-hidden="true">↗</span></a><div class="contact-location"><span aria-hidden="true">✦</span><p>E. E. Presidente Tancredo Neves<br><strong>Caeté, Minas Gerais</strong></p></div></div>
+      <div class="contact-links"><a href="https://www.instagram.com/equipe_orion_/" target="_blank" rel="noopener noreferrer"><span><small>FOTOS, BASTIDORES E NOVIDADES</small><strong>Instagram</strong></span><span aria-hidden="true">↗</span></a><a href="https://www.tiktok.com/@equipe_orion" target="_blank" rel="noopener noreferrer"><span><small>VÍDEOS E MOMENTOS DA EQUIPE</small><strong>TikTok</strong></span><span aria-hidden="true">↗</span></a><div class="contact-location"><span class="location-code" aria-hidden="true">MG</span><p>E. E. Presidente Tancredo Neves<br><strong>Caeté, Minas Gerais</strong></p></div></div>
     </div></section>
   </main>
   <footer class="site-footer wrap"><a class="footer-brand" href="#inicio"><span class="footer-mark"><img src="./assets/orion-mark.png" width="32" height="28" alt=""></span> EQUIPE ÓRION</a><p>Robótica, aprendizado e trabalho em equipe.</p><a href="#inicio">Voltar ao topo ↑</a></footer>
