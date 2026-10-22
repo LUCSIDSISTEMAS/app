@@ -14,3 +14,6 @@ dialog.viewer{background:#102230;color:#fff;border:1px solid #415c6e;border-radi
 .copa-second .gallery{columns:3 240px}
 @media(max-width:760px){.copa-second .gallery{columns:2 145px}}
 @media(max-width:370px){.copa-second .gallery{columns:1}}
+
+/* Shared white visual identity. */
+:root{--bg:#fff;--text:#192329;--muted:#5e6971;--accent:#315a79;--cyan:#315a79;--line:#e0e5e9;font-family:"Segoe UI",Arial,sans-serif}.site-header{background:#fff;color:#192329;border-color:#e0e5e9}.brand img{filter:brightness(0)}.brand small{color:#66727a}.nav-links a{color:#45525d;border-color:#e0e5e9;border-radius:50px}.nav-links a:hover{background:#eff4f7;color:#192329}.nav-links a[aria-current=page]{background:#192b38;color:#fff}.hero h1{font-weight:700}.hero h1 span{color:#315a79}.hero-meta span{background:#f1f5f8;border-color:#dfe7ec;color:#536e81;border-radius:50px}.photo-card,.video-card,.testimonial-card{border-radius:14px}.edition-switch a,.closing a{border-radius:50px}.closing{border-radius:16px;background:#192b38}.closing a{background:#fff;color:#192b38}.video-start{background:#192b38dd}.publications-jump{border-radius:50px}
