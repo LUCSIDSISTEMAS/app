@@ -23,9 +23,9 @@
   });
   const tabs = [...document.querySelectorAll('.season-tabs [role="tab"]')];
   const seasonSlides = [
-    {src:'./assets/temporada/temporada-gestao.webp', label:'GESTÃO', caption:'Acompanhamento do processo e dos recursos do projeto.', alt:'Integrante da equipe acompanha a operação de uma impressora 3D.'},
-    {src:'./assets/temporada/temporada-programacao.webp', label:'PROGRAMAÇÃO', caption:'Programação e testes feitos em equipe.', alt:'Dois estudantes trabalham juntos nos computadores.'},
-    {src:'./assets/temporada/temporada-robot.webp', label:'ENGENHARIA', caption:'Montagem e testes do robô.', alt:'Estudante trabalha na montagem e nos testes do robô verde.'}
+    {src:'./assets/temporada/temporada-programacao.webp', label:'GESTÃO', caption:'Planejamento e colaboração com tecnologia.', alt:'Dois estudantes trabalham juntos nos computadores.'},
+    {src:'./assets/temporada/temporada-robot.webp', label:'PROGRAMAÇÃO', caption:'Integração do código ao funcionamento do robô.', alt:'Estudante trabalha na montagem e nos testes do robô verde.'},
+    {src:'./assets/temporada/temporada-gestao.webp', label:'ENGENHARIA', caption:'Prototipagem e fabricação com impressão 3D.', alt:'Integrante da equipe acompanha a operação de uma impressora 3D.'}
   ];
   const seasonImage = document.querySelector('#seasonPhoto');
   const seasonPhotoLabel = document.querySelector('#seasonPhotoLabel');
