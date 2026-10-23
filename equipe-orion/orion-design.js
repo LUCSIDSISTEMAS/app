@@ -22,6 +22,25 @@
     if (event.key === 'Escape' && explore.open) { explore.open = false; explore.querySelector('summary').focus(); }
   });
   const tabs = [...document.querySelectorAll('.season-tabs [role="tab"]')];
+  const seasonSlides = [
+    {src:'./assets/temporada/temporada-gestao.webp', label:'GESTÃO', caption:'Acompanhamento do processo e dos recursos do projeto.', alt:'Integrante da equipe acompanha a operação de uma impressora 3D.'},
+    {src:'./assets/temporada/temporada-programacao.webp', label:'PROGRAMAÇÃO', caption:'Programação e testes feitos em equipe.', alt:'Dois estudantes trabalham juntos nos computadores.'},
+    {src:'./assets/temporada/temporada-robot.webp', label:'ENGENHARIA', caption:'Montagem e testes do robô.', alt:'Estudante trabalha na montagem e nos testes do robô verde.'}
+  ];
+  const seasonImage = document.querySelector('#seasonPhoto');
+  const seasonPhotoLabel = document.querySelector('#seasonPhotoLabel');
+  const seasonPhotoCaption = document.querySelector('#seasonPhotoCaption');
+  const seasonDots = [...document.querySelectorAll('[data-season-slide]')];
+  let activeSeasonSlide = 0;
+  const showSeasonSlide = index => {
+    activeSeasonSlide = (index + seasonSlides.length) % seasonSlides.length;
+    const slide = seasonSlides[activeSeasonSlide];
+    seasonImage.src = slide.src;
+    seasonImage.alt = slide.alt;
+    seasonPhotoLabel.textContent = slide.label;
+    seasonPhotoCaption.textContent = slide.caption;
+    seasonDots.forEach((dot, dotIndex) => dot.setAttribute('aria-pressed', String(dotIndex === activeSeasonSlide)));
+  };
   const activateTab = tab => {
     tabs.forEach(item => {
       const active = item === tab;
@@ -29,6 +48,8 @@
       item.tabIndex = active ? 0 : -1;
       document.getElementById(item.getAttribute('aria-controls')).hidden = !active;
     });
+    const slideIndex = tabs.indexOf(tab);
+    if (slideIndex >= 0) showSeasonSlide(slideIndex);
   };
   tabs.forEach((tab, index) => {
     tab.addEventListener('click', () => activateTab(tab));
@@ -40,6 +61,10 @@
       activateTab(next); next.focus();
     });
   });
+  document.querySelector('[data-season-prev]').addEventListener('click', () => activateTab(tabs[(activeSeasonSlide + tabs.length - 1) % tabs.length]));
+  document.querySelector('[data-season-next]').addEventListener('click', () => activateTab(tabs[(activeSeasonSlide + 1) % tabs.length]));
+  seasonDots.forEach((dot, index) => dot.addEventListener('click', () => activateTab(tabs[index])));
+  activateTab(tabs.find(tab => tab.getAttribute('aria-selected') === 'true') || tabs[0]);
 
   const viewer = document.querySelector('#photoViewer');
   const picture = viewer.querySelector('.viewer-image');

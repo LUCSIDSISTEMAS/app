@@ -15,9 +15,9 @@
   <meta property="og:locale" content="pt_BR">
   <link rel="icon" href="./assets/orion-mark.png" type="image/png">
   <link rel="preload" as="image" href="./assets/momento-equipe-03.webp">
-  <link rel="stylesheet" href="./orion-design.css?v=20261023a">
+  <link rel="stylesheet" href="./orion-design.css?v=20261023b">
   <link rel="stylesheet" href="./patrocinadores.css?v=20261023a">
-  <script defer src="./orion-design.js?v=20261022b"></script>
+  <script defer src="./orion-design.js?v=20261023b"></script>
 <link rel="stylesheet" href="./orion-motion.css?v=20261022f"><script defer src="./orion-motion.js?v=20261022f"></script></head>
 <body>
   <a class="skip" href="#conteudo">Pular para o conteúdo</a>
@@ -59,7 +59,19 @@
           <div class="season-panel" id="painel-programacao" role="tabpanel" aria-labelledby="tab-programacao" tabindex="0" hidden><span class="area-index">02 / CÓDIGO</span><h3>Da lógica ao movimento.</h3><p>Desenvolvimento da lógica que orienta o robô. A programação transforma os objetivos do projeto em comandos, testa respostas e ajusta o comportamento do sistema.</p><ul><li>Lógica e desenvolvimento do código</li><li>Integração de comandos e sensores</li><li>Testes, ajustes e automação</li></ul></div>
           <div class="season-panel" id="painel-engenharia" role="tabpanel" aria-labelledby="tab-engenharia" tabindex="0" hidden><span class="area-index">03 / CONSTRUÇÃO</span><h3>Ideias que ganham estrutura.</h3><p>Construção e evolução física do projeto. A engenharia reúne montagem, mecanismos e testes para transformar uma ideia em um robô pronto para os desafios.</p><ul><li>Estrutura e montagem do robô</li><li>Mecanismos e componentes</li><li>Testes de funcionamento e melhorias</li></ul></div>
         </div>
-        <figure class="project-photo"><button class="image-button" type="button" data-image="./assets/momento-equipe-02.webp" data-title="A equipe e seu projeto · 2026" data-group="equipe" aria-label="Ampliar foto da equipe com seu projeto"><img src="./assets/momento-equipe-02.webp" width="627" height="468" alt="A nova formação da Órion reunida atrás da mesa de apresentação do projeto." loading="lazy" decoding="async"></button><figcaption><span class="tag">EM EQUIPE</span><span>Uma nova fase da Órion.</span></figcaption></figure>
+        <figure class="project-photo" aria-label="Fotos das áreas da temporada 2026">
+          <div class="project-photo-frame"><img id="seasonPhoto" src="./assets/temporada/temporada-gestao.webp" width="1200" height="1600" alt="Integrante da equipe acompanha a operação de uma impressora 3D." loading="lazy" decoding="async"></div>
+          <figcaption><span class="tag" id="seasonPhotoLabel">GESTÃO</span><span id="seasonPhotoCaption">Acompanhamento do processo e dos recursos do projeto.</span></figcaption>
+          <div class="season-carousel-controls" role="group" aria-label="Controles das fotos da temporada">
+            <button class="season-carousel-arrow" type="button" data-season-prev aria-label="Foto anterior">‹</button>
+            <div class="season-carousel-dots" role="group" aria-label="Escolher foto">
+              <button type="button" data-season-slide="0" aria-label="Mostrar foto de Gestão" aria-pressed="true"></button>
+              <button type="button" data-season-slide="1" aria-label="Mostrar foto de Programação" aria-pressed="false"></button>
+              <button type="button" data-season-slide="2" aria-label="Mostrar foto de Engenharia" aria-pressed="false"></button>
+            </div>
+            <button class="season-carousel-arrow" type="button" data-season-next aria-label="Próxima foto">›</button>
+          </div>
+        </figure>
       </div>
     </section>
     <section class="section wrap awards-section" id="copa" aria-labelledby="conquistas-title">
