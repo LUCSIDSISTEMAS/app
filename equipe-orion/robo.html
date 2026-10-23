@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#ffffff">
+  <title>Robô Órion V2 | Projeto, controle e código</title>
+  <meta name="description" content="Documentos do robô Órion V2: apresentação visual, montagem no SolidWorks e firmware com comandos do controle.">
+  <link rel="canonical" href="https://lucsidsistemas.github.io/app/equipe-orion/robo.html">
+  <link rel="icon" href="./assets/orion-mark.png" type="image/png">
+  <link rel="stylesheet" href="./orion-design.css?v=20261023a">
+  <link rel="stylesheet" href="./robo.css?v=20261023a">
+  <script defer src="./robo.js?v=20261023a"></script>
+</head>
+<body>
+  <a class="skip" href="#conteudo">Pular para o conteúdo</a>
+  <header class="site-header">
+    <nav class="nav" aria-label="Navegação principal">
+      <a class="brand" href="./index.html#inicio" aria-label="Equipe Órion — início"><img src="./assets/orion-mark.png" width="42" height="36" alt=""><span>ÓRION<small>ROBÓTICA ESTUDANTIL</small></span></a>
+      <button class="menu-toggle" id="menuToggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="navLinks"><span></span><span></span></button>
+      <div class="nav-links" id="navLinks">
+        <a href="./index.html#inicio">Início</a>
+        <a href="#documentos" aria-current="page">Robô e programação</a>
+        <details class="nav-explore"><summary>Explore <span aria-hidden="true">⌄</span></summary><div class="explore-links"><span>ENCONTROS E HISTÓRIAS</span><a href="./primeira-copa-orion.html">1ª Copa Órion</a><a href="./segunda-copa-orion.html">2ª Copa Órion</a><a href="./depoimentos.html">Depoimentos dos alunos</a><a href="./index.html#parceiros">Patrocinadores</a></div></details>
+        <a class="nav-contact" href="./index.html#contato">Fale com a equipe</a>
+      </div>
+    </nav>
+  </header>
+  <main id="conteudo">
+    <section class="docs-hero wrap" aria-labelledby="page-title">
+      <p class="eyebrow">PROJETO · MONTAGEM · CONTROLE</p>
+      <h1 id="page-title">Por dentro do <span>Órion V2.</span></h1>
+      <p>Uma área de consulta para conhecer o robô, entender a montagem e acompanhar como o controle e o código trabalham juntos.</p>
+    </section>
+    <section class="docs-section wrap" id="documentos" aria-labelledby="docs-title">
+      <div class="docs-heading"><div><p class="eyebrow">MATERIAIS TÉCNICOS</p><h2 id="docs-title">Escolha por onde começar</h2></div><p>Os documentos completos abrem em uma nova guia ou podem ser baixados.</p></div>
+      <div class="docs-grid">
+        <article class="doc-card">
+          <a class="doc-cover" href="./assets/documentos/orion-v2-apresentacao-360.pdf" target="_blank" rel="noopener noreferrer" aria-label="Abrir apresentação 360 graus do Órion V2"><img src="./assets/documentos/apresentacao.webp" width="1100" height="650" alt="Vista renderizada do robô Órion V2 com rastelo e caçamba." loading="lazy" decoding="async"></a>
+          <div class="doc-copy"><span class="doc-type">VISÃO GERAL</span><h3>Conheça o Órion V2</h3><p>Apresentação visual 360°, dimensões e demonstração das posições do rastelo e da caçamba.</p><div class="doc-actions"><a href="./assets/documentos/orion-v2-apresentacao-360.pdf" target="_blank" rel="noopener noreferrer">Abrir PDF</a><a href="./assets/documentos/orion-v2-apresentacao-360.pdf" download>Baixar</a></div></div>
+        </article>
+        <article class="doc-card">
+          <a class="doc-cover" href="./assets/documentos/orion-v2-montagem-solidworks.pdf" target="_blank" rel="noopener noreferrer" aria-label="Abrir desenho de montagem do Órion V2 no SolidWorks"><img src="./assets/documentos/montagem-solidworks.webp" width="1100" height="650" alt="Vista explodida da montagem do robô Órion V2 no SolidWorks." loading="lazy" decoding="async"></a>
+          <div class="doc-copy"><span class="doc-type">MONTAGEM</span><h3>Peças e estrutura</h3><p>Vista explodida do SolidWorks para visualizar como as partes do chassi se organizam.</p><div class="doc-actions"><a href="./assets/documentos/orion-v2-montagem-solidworks.pdf" target="_blank" rel="noopener noreferrer">Abrir PDF</a><a href="./assets/documentos/orion-v2-montagem-solidworks.pdf" download>Baixar</a></div></div>
+        </article>
+        <article class="doc-card">
+          <a class="doc-cover code-cover" href="./assets/documentos/orion-v4-1-2-firmware-controle.pdf" target="_blank" rel="noopener noreferrer" aria-label="Abrir firmware e guia do controle do robô"><span class="code-mark" aria-hidden="true">{ }</span><span class="code-caption">ESP32-S3 · BLUEPAD32</span></a>
+          <div class="doc-copy"><span class="doc-type">CONTROLE E PROGRAMAÇÃO</span><h3>Manete e código</h3><p>Guia do firmware v4.1.2: comandos do controle, modos de operação, gravação de movimentos e medidas de segurança.</p><div class="doc-actions"><a href="./assets/documentos/orion-v4-1-2-firmware-controle.pdf" target="_blank" rel="noopener noreferrer">Abrir PDF</a><a href="./assets/documentos/orion-v4-1-2-firmware-controle.pdf" download>Baixar</a></div></div>
+        </article>
+      </div>
+      <p class="docs-note">O firmware documentado é específico para ESP32-S3 e indica Arduino-ESP32 Core 2.x e Bluepad32. Consulte o guia antes de alterar ou carregar o código.</p>
+    </section>
+  </main>
+  <footer class="site-footer wrap"><a class="footer-brand" href="./index.html#inicio"><span class="footer-mark"><img src="./assets/orion-mark.png" width="32" height="28" alt=""></span> EQUIPE ÓRION</a><p>Robótica, aprendizado e trabalho em equipe.</p><a href="./index.html#inicio">Voltar ao início</a></footer>
+</body>
+</html>
