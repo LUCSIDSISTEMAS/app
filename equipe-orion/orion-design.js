@@ -61,10 +61,12 @@
       activateTab(next); next.focus();
     });
   });
-  document.querySelector('[data-season-prev]').addEventListener('click', () => activateTab(tabs[(activeSeasonSlide + tabs.length - 1) % tabs.length]));
-  document.querySelector('[data-season-next]').addEventListener('click', () => activateTab(tabs[(activeSeasonSlide + 1) % tabs.length]));
+  const seasonPrev = document.querySelector('[data-season-prev]');
+  const seasonNext = document.querySelector('[data-season-next]');
+  if (seasonPrev && tabs.length) seasonPrev.addEventListener('click', () => activateTab(tabs[(activeSeasonSlide + tabs.length - 1) % tabs.length]));
+  if (seasonNext && tabs.length) seasonNext.addEventListener('click', () => activateTab(tabs[(activeSeasonSlide + 1) % tabs.length]));
   seasonDots.forEach((dot, index) => dot.addEventListener('click', () => activateTab(tabs[index])));
-  activateTab(tabs.find(tab => tab.getAttribute('aria-selected') === 'true') || tabs[0]);
+  if (tabs.length) activateTab(tabs.find(tab => tab.getAttribute('aria-selected') === 'true') || tabs[0]);
 
   const viewer = document.querySelector('#photoViewer');
   const picture = viewer.querySelector('.viewer-image');
